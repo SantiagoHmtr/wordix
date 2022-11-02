@@ -5,7 +5,14 @@ include_once("wordix.php");
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
 
-/* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
+/*
+Apellido: Fuentealba
+Nombre: Dario
+Legajo: FAI-4424
+Carrera: TUDW
+mail: dariofuentealba1@gmail.com
+Usuario Github: DarioFuentealba 
+*/
 /* ... COMPLETAR ... */
 
 
@@ -23,9 +30,10 @@ function cargarColeccionPalabras()
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS"
-        /* ... COMPLETAR ... Agregar 5 palabras más */
+        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+        "HIELO", "MANGO", "PIZZA", "PADRE", "HIJAS"
     ];
+    //LISTO
 
     return ($coleccionPalabras);
 }

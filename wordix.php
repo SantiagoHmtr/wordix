@@ -26,8 +26,11 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/**
- *  ****COMPLETAR*****
+//LISTO
+/** Pide al usuario un número entre un rango de valores. Si éste no es válido, se pide de nuevo
+ * @param INT $min
+ * @param INT $max
+ * @return INT Retorna un número válido
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -111,8 +114,9 @@ function escribirSegunEstado($texto, $estado)
     }
 }
 
-/**
- * ****COMPLETAR*****
+/** Dado el nombre del usuario, da un mensaje bienvenida personalizado
+ * @param STRING $usuario
+ * ****LISTO*****
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -124,8 +128,10 @@ function escribirMensajeBienvenida($usuario)
 }
 
 
-/**
- * ****COMPLETAR*****
+/** Verifica la longitud de una palabra y que todos sus caractéres sean alfabéticos
+ * @param STRING $cadena
+ * @return BOOLEAN $esLetra 
+ * ****LISTO*****
  */
 function esPalabra($cadena)
 {
@@ -141,6 +147,8 @@ function esPalabra($cadena)
 }
 
 /**
+ * @param
+ * @return
  *  ****COMPLETAR*****
  */
 function leerPalabra5Letras()
