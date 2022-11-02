@@ -22,6 +22,7 @@ Carrera: TUDW
 Email: santiagoramirogarcia97@gmail.com
 Usuario Github: SantiagoHmtr
 */
+
 /*
 Apellido: Aguirre
 Nombre: Alan Michel
@@ -29,9 +30,15 @@ Legajo: FAI-2635
 Email: alanaguirre_09@hotmail.com
 Usuario Github: AlanMichelAguirre
 */
-/* ... COMPLETAR ... */
 
-
+/*
+Apellido: Candelaresi
+Nombre: Pedro
+Legajo: 112758
+Carrera: TUASySL
+mail: pedro.candelaresi@est.fi.unco.edu.ar
+Usuario Github: CandelaresiPedro
+*/
 
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
@@ -87,7 +94,30 @@ function cargarPartidas($palabraWordix,$jugador,$intentos,$puntaje){
 
 /**************************************/
 /*inciso 3 */
-
+/**
+* Crea el menu de opciones del juego
+* Insiso 3
+* @return int
+*/
+function seleccionarOpcion()
+// int $opcion
+{
+    echo "\n------------------------------------------------------------------\n";
+    echo "Menú de opciones\n";
+    echo "------------------------------------------------------------------\n";
+    echo "1) Jugar al Wordix con una palabra elegida\n";
+    echo "2) Jugar al Wordix con una palabra aleatoria\n";
+    echo "3) Mostrar una partida\n";
+    echo "4) Mostrar la primer partida ganadora\n";
+    echo "5) Mostrar resumen de Jugador\n";
+    echo "6) Mostrar listado de partidas ordenadas por jugador y por palabra\n";
+    echo "7) Agregar una palabra de 5 letras a Wordix\n";
+    echo "8) Salir\n";
+    echo "------------------------------------------------------------------\n";
+    echo "Ingrese la opcion deseada: ";    
+    $opcion = trim(fgets(STDIN));
+    return $opcion;
+}
 
 /**************************************/
 
@@ -183,54 +213,73 @@ function solicitarJugador(){
 /**************************************/
 
 
-
-
-
-
-
-
-
-
-
-
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
-
+/* Wordix es un Juego de palabras muy adictivo en el que tendrás que adivinar palabras. Tu tarea del usuario consiste en
+resolver una palabra de cinco letras en seis intentos. */
 //Declaración de variables:
-
+// int      $opcion
+// string   $nombreUsuario
+// array    $coleccionPalabras
 
 //Inicialización de variables:
-
-
+$opcion=0;
+$nombreUsuario="Wordix";
+$coleccionPalabras=[];
+$resumenPartidas=[];
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+// $partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
-
-
-
-/*
+$coleccionPalabras=cargarColeccionPalabras();
 do {
-    $opcion = ...;
-
-    
-    switch ($opcion) {
+    $opcion=seleccionarOpcion();
+    switch ($opcion) {  //la funcion switch reemplaza al condicional if-elseif, no compara si no que tiene una opcion para cada caso, 
+                        //en caso de no tener COINCIDENCIA para el valor ingresado, el apartado "default" determina que hacer.
         case 1: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
-
+            $nombreUsuario=solicitarJugador();
+            echo "opcion 1";
             break;
         case 2: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
-
+            echo "opcion 2";
             break;
         case 3: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+            echo "opcion 3";
             break;
-        
             //...
+        case 4: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            echo "opcion 4";
+            break;
+            //...
+        case 5: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            echo "opcion 5";
+            break;
+            //...
+        case 6: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            echo "opcion 6";
+            break;
+            //...
+        case 7: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            echo "opcion 7";
+            break;
+            //...
+        case 8: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            echo "Muchas gracias por jugar Wordix!!!\n";
+            break;
+            //...          
+        default :
+            //Caso general para cuando no se ingresa ninguna de la opciones del menu.
+            echo "ERROR!!! Ingrese una opcion correcta: \n";
+            break;
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);
