@@ -230,7 +230,7 @@ $coleccionPalabras=[];
 $resumenPartidas=[];
 //Proceso:
 
-// $partida = jugarWordix("MELON", strtolower("MaJo"));
+// $partida = jugarWordix("MELON", strtolower("MaJo"));php
 //print_r($partida);
 //imprimirResultado($partida);
 $coleccionPalabras=cargarColeccionPalabras();
