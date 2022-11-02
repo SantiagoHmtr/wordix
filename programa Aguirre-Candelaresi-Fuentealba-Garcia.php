@@ -62,8 +62,8 @@ function cargarColeccionPalabras()
 /*inciso 2 */
 /**
 *Inicializa con 10 partidas ya jugadas
-*@param String $palabraWordix
-*@param int $jugador,$intentos,$puntaje
+*@param String $jugador,$palabraWordix
+*@param int $intentos,$puntaje
 *@return array
 */
 function cargarPartidas($palabraWordix,$jugador,$intentos,$puntaje){
