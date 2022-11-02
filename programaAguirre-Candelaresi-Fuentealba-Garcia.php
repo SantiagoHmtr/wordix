@@ -43,6 +43,114 @@ function cargarColeccionPalabras()
 
 
 /**************************************/
+/*inciso 2 */
+
+
+/**************************************/
+
+
+
+
+/**************************************/
+/*inciso 3 */
+
+
+/**************************************/
+
+
+
+
+/**************************************/
+/*inciso 4 */
+
+
+/**************************************/
+/**************************************/
+/*inciso 5 */
+
+
+/**************************************/
+
+
+
+
+/**************************************/
+/*inciso 6 */
+
+
+/**************************************/
+
+
+
+
+/**************************************/
+/*inciso 7 */
+
+
+/**************************************/
+/**************************************/
+/*inciso 8 */
+
+
+/**************************************/
+
+
+
+
+/**************************************/
+/*inciso 9 */
+
+
+/**************************************/
+
+
+
+
+/**************************************/
+/*inciso 10 */
+/*Esta funcion solicita el nombre del jugador y retorna el mismo nombre pero con los caracteres en minuscula*/
+/*@param null*/
+/*@var string $jugador, $nombre */
+/*@return string $jugador*/
+function solicitarJugador(){
+    /*Se utiliza la repetitiva do-while, para que la funcion genere iteraciones hasta que se ingrese
+    *un nombre el cual su primer caracter sea una letra*/
+    do{
+
+        echo "Ingrese el nombre del jugador: ";
+        $jugador = trim(fgets(STDIN));
+        $primerCaracter = $jugador[0];
+        if (ctype_alpha($primerCaracter)){
+            return strtolower($jugador);
+        }else{
+            echo "El nombre del jugador DEBE iniciar con una letra, por favor, ingreselo nuevamente:\n";
+            };
+    }while(!ctype_alpha($primerCaracter));
+}
+
+/**************************************/
+
+
+
+
+/**************************************/
+/*inciso 11 */
+
+
+/**************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+/**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
