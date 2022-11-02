@@ -1,9 +1,5 @@
 <?php
 
-/** MÓDULO 1: Inicializa una estructura de datos con ejemplos de palabras de 5 letras en mayúsculas y retorna una colección de 15 palabras como mínimo
-* @param
-* @return
-*/
 
 
 
@@ -26,6 +22,8 @@ function esPalabra($cadena)
 }
 
 
+//-----------------------------------------------------------------
+
 
 /** MÓDULO 5: Pide al usuario un número entre un rango de valores. Si éste no es válido, se pide de nuevo
  * @param INT $min
@@ -43,6 +41,8 @@ function solicitarNumeroEntre($min, $max)
     return $numero;
 }
 
+
+//-------------------------------------------
 
 
 /** MÓDULO 6:Dado un número de partida, muestra en pantalla los datos de la partida
