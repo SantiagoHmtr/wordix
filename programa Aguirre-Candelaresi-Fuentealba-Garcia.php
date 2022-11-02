@@ -43,7 +43,8 @@ Usuario Github: CandelaresiPedro
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
-
+/**************************************/
+/*inciso 1 */
 /**
  * Obtiene una colección de palabras
  * @return array
@@ -60,11 +61,6 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
-
-/* ... COMPLETAR ... */
-
-
-
 /**************************************/
 /*inciso 2 */
 /**
@@ -86,12 +82,6 @@ function cargarPartidas($palabraWordix,$jugador,$intentos,$puntaje){
 	array_push($coleccionPartidas,["palabraWordix"=>$palabraWordix,"nombre"=>$jugador,"cantIntentos"=>$intentos,"puntaje"=>$puntaje]);
     return $coleccionPartidas;
 }
-
-/**************************************/
-
-
-
-
 /**************************************/
 /*inciso 3 */
 /**
@@ -267,13 +257,14 @@ do {
             echo "opcion 6";
             break;
             //...
-        case 7: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-            echo "opcion 7";
+        case 7:
+            echo "Ingrese palabra para agregar a Wordix: ";
+            $palabra=trim(fgets(STDIN)); 
+            $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabra);
             break;
             //...
         case 8: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            //Salir
             echo "Muchas gracias por jugar Wordix!!!\n";
             break;
             //...          
