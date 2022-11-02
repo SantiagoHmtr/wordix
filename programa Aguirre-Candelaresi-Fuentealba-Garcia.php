@@ -162,6 +162,10 @@ function agregarPalabra($coleccionPalabras,$palabra){
 
 /**************************************/
 /*inciso 9 */
+function resumenJugador($partidasColeccion,$jugador)
+{
+
+}
 
 
 /**************************************/
@@ -219,7 +223,6 @@ $nombreUsuario="Wordix";
 $coleccionPalabras=[];
 $resumenPartidas=[];
 //Proceso:
-
 // $partida = jugarWordix("MELON", strtolower("MaJo"));php
 //print_r($partida);
 //imprimirResultado($partida);
@@ -258,8 +261,7 @@ do {
             break;
             //...
         case 7:
-            echo "Ingrese palabra para agregar a Wordix: ";
-            $palabra=trim(fgets(STDIN)); 
+            $palabra=leerPalabra5Letras();
             $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabra);
             break;
             //...
