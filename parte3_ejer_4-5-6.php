@@ -82,3 +82,46 @@ $mensaje = m6partidas(13);
 
 //Resultado
 echo $mensaje;
+
+
+//-------------------------------------------------------
+
+
+/** MÓDULO 8: Dadas una colección de partidas y el nombre y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
+ * @param INT $m8cantidadPartidas
+ * @param STRING $m8usuario
+ * @return INT el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
+ */
+function m8indicePartidaGanada ($m8cantidadPartidas, $m8usuario){
+    //INT $r8indicePartidaGanada
+
+    //Inicializo variable
+    $r8indicePartidaGanada = 0;
+
+    //Veo cuantos elementos tiene el arreglo
+    $m8n = count($coleccionPartidas);
+    
+    //Contador
+    $m8i = 0;
+
+    //Recorrido parcial para ver si existe el usuario que se pide
+    while ($m8i < $m8n && $usuario == "nombre"){
+    $m8i = $m8i + 1;
+    }
+        if ($usuario == "nombre"){
+
+            //Recorrido parcial para hallar la 1er partida ganada por el usuario
+            while ($m8i < $m8n && $usuario == "nombre" && $puntaje != 0){
+                if ($puntaje != 0){
+                    $m8mensaje = "El índice de la primer partida ganada por ".$usuario." es: ".$m8n."\n";
+                }else{
+                    $m8mensaje = $usuario." no ganó ninguna partida, su índice es: -1\n";
+                }
+            $m8i = $m8i + 1;
+            }
+
+        }
+    return $m8mensaje;
+}
+
+
