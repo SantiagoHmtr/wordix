@@ -2,11 +2,11 @@
 Juego Wordix desarrollado en introduccion a la programacion (FAI)
 
 # Materia 2022
-Introduccion a la computacion  
+Introduccion a la programación  
 
-Tecnicatura universitaria en Desarrollo Web  
+Tecnicatura Universitaria en Desarrollo Web  
 
-Facultad de Informatica  
+Facultad de Informática  
 
 Universidad Nacional Del Comahue  
 
