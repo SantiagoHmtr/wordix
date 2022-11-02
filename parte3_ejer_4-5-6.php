@@ -77,6 +77,8 @@ PROGRAMA PRINCIPAL
 */
 
 $mensaje = " ";
-
+//Invoco módulo 6
 $mensaje = m6partidas(13);
+
+//Resultado
 echo $mensaje;
