@@ -13,6 +13,16 @@ Carrera: TUDW
 mail: dariofuentealba1@gmail.com
 Usuario Github: DarioFuentealba 
 */
+
+/*
+Apellido: Garcia
+Nombre: Santiago
+Legajo: FAI-1777
+Carrera: TUDW
+Email: santiagoramirogarcia97@gmail.com
+Usuario Github: SantiagoHmtr
+*/
+
 /* ... COMPLETAR ... */
 
 
