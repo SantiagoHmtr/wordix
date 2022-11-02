@@ -47,9 +47,36 @@ function solicitarNumeroEntre($min, $max)
 
 /** MÓDULO 6:Dado un número de partida, muestra en pantalla los datos de la partida
  * @param INT $m6nroPartida
- * @return
+ * @return STRING Retorna un mensaje
  */
-function m6partidas ($m6nroPartida){
-    echo "Partida WORDIX ".$$m6nroPartida.": palabra ".$m6palabra."\nJugador: ".$m6jugador."\nPuntaje: ".$m6puntos."\nIntentos
+function m6partidas($m6partida)
+{
+    //STRING $mensaje
+
+    $m6intentos = 6;
+    $m6partida = 13;
+    $m6palabra = "MELON";
+    $m6usuario = "majo";
+    $m6puntaje = 0;
+
+    if ($m6intentos > 0 && $m6intentos <=6 && $m6puntaje != 0){
+        $mensajeIntentos = "adivinó la palabra en ".$m6intentos." intentos";
+    }else{
+        $mensajeIntentos = "No adivinó la palabra";
+    }
+
+    $mensaje = "Partida WORDIX ".$m6partida.": palabra ".$m6palabra."\nJugador: ".$m6usuario."\nPuntaje: ".$m6puntaje."\nIntentos: ".$mensajeIntentos;
+
+    return $mensaje;
 }
 
+
+/*
+PROGRAMA PRINCIPAL
+
+*/
+
+$mensaje = " ";
+
+$mensaje = m6partidas(13);
+echo $mensaje;
