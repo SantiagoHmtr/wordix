@@ -22,7 +22,13 @@ Carrera: TUDW
 Email: santiagoramirogarcia97@gmail.com
 Usuario Github: SantiagoHmtr
 */
-
+/*
+Apellido: Aguirre
+Nombre: Alan Michel
+Legajo: FAI-2635
+Email: alanaguirre_09@hotmail.com
+Usuario Github: AlanMichelAguirre
+*/
 /* ... COMPLETAR ... */
 
 
