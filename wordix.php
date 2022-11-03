@@ -35,7 +35,6 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 function solicitarNumeroEntre($min, $max)
 {
     //int $numero
-    echo "Ingrese numero de palabra: ";
     $numero = trim(fgets(STDIN));
     while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
         echo "Debe ingresar un número entre " . $min . " y " . $max . ": \n";
@@ -337,13 +336,10 @@ function obtenerPuntajeWordix($palabraPartida,$intento)  /* ****COMPLETAR***** p
     for ($l=0;$l<=4;$l++){
         if ($palabraPartida[$l]=="A"||$palabraPartida[$l]=="E"||$palabraPartida[$l]=="I"||$palabraPartida[$l]=="O"||$palabraPartida[$l]=="U"){
             $puntos++;
-            echo "vocal: ".$puntos."\n";
         }elseif($palabraPartida[$l]<="M"){
             $puntos=$puntos+2;
-            echo "menor o igual a m: ".$puntos."\n";
         }else{
             $puntos=$puntos+3;
-            echo "mayor a m: ".$puntos."\n";
         }
     }
     $puntos=$puntos+(7-$intento);
