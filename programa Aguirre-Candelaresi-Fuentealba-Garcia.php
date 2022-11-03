@@ -127,12 +127,43 @@ function seleccionarOpcion()
 
 /**************************************/
 /*inciso 4 */
-
+/**
+Verifica la longitud de una palabra y que todos sus caractéres sean alfabéticos
+* @param STRING $cadena
+* @return BOOLEAN $esLetra 
+*/
+function esPalabra($cadena)
+{
+    //INT $cantidadCaracteres, $i, BOOLEAN $esLetra
+    $cantidadCaracteres = strlen($cadena);
+    $esLetra = true;
+    $i = 0;
+    while ($esLetra && $i < $cantidadCaracteres) {
+        $esLetra =  ctype_alpha($cadena[$i]);
+        $i++;
+    }
+    return $esLetra;
+}
 
 /**************************************/
 /**************************************/
 /*inciso 5 */
-
+/**
+Pide al usuario un número entre un rango de valores. Si éste no es válido, se pide de nuevo
+* @param INT $min
+* @param INT $max
+* @return INT Retorna un número válido
+*/
+function solicitarNumeroEntre($min, $max)
+{
+    //INT $numero
+    $numero = trim(fgets(STDIN));
+    while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
+        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
+        $numero = trim(fgets(STDIN));
+    }
+    return $numero;
+}
 
 /**************************************/
 
@@ -140,7 +171,26 @@ function seleccionarOpcion()
 
 
 /**************************************/
-/*inciso 6 */
+/*inciso 6 */  ENCONTRE FALLA. COMO INVOCAR AL ARRAY COLECCION PARTIDAS QUE ESTA EN EXCEL ------------------------------------------------------------------------
+/**
+Dado un número de partida, muestra en pantalla los datos de la partida
+* @param INT $numeroPartida
+* @return STRING Retorna un mensaje
+*/
+function m6partidas($numeroPartida)
+{
+    //STRING $mensaje
+
+    if ($puntaje != 0){
+        $mensajeIntentos = "adivinó la palabra en ".$intentos." intentos";
+    }else{
+        $mensajeIntentos = "No adivinó la palabra";
+    }
+
+    $mensaje = "Partida WORDIX ".$numeroPartida.": palabra ".$palabra."\nJugador: ".$usuario."\nPuntaje: ".$puntaje."\nIntentos: ".$mensajeIntentos;
+
+    return $mensaje;
+}
 
 
 /**************************************/
@@ -164,8 +214,33 @@ function agregarPalabra($coleccionPalabras,$palabra){
 /**************************************/
 /**************************************/
 /*inciso 8 */
+/**
+Dadas una colección de partidas y el nombre y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
+* @param INT $cantidadPartidas
+* @param STRING $usuario
+* @return INT el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
+*/
+function indicePartidaGanada ($partidas, $usuario){
+    $partidas[0] = ["palabraWordix" => "QUESO", "jugador" => "pimku", "intentos" => 2, "puntaje" => 5];
+    $partidas[1] = ["palabraWordix" => "MANGO", "jugador" => "haimtor", "intentos" => 4, "puntaje" => 0];
+    $partidas[2] = ["palabraWordix" => "GOTAS", "jugador" => "pedro", "intentos" => 5, "puntaje" => 5];
+    $partidas[3] = ["palabraWordix" => "HIJAS", "jugador" => "haimtor", "intentos" => 2, "puntaje" => 5];
+    $partidas[4] = ["palabraWordix" => "PADRE", "jugador" => "martin", "intentos" => 5, "puntaje" => 5];
+    $partidas[5] = ["palabraWordix" => "PIZZA", "jugador" => "pimku", "intentos" => 3, "puntaje" => 5];
+    $partidas[6] = ["palabraWordix" => "HIELO", "jugador" => "martin", "intentos" => 6, "puntaje" => 5];
 
+    $indicePrimeraVictoria = [];
+    echo "Ingrese el nombre del jugador: ";
+    $usuario = trim(fgets(STDIN));
 
+    for ($i = 0; $i < count ($partidas); $i++) {
+        if ($partidas[$i]["jugador"] == $usuario && ($partidas[$i]["puntaje"] > 0)) {
+            $indicePrimeraVictoria = $i;
+            $i = count ($partidas);
+        }
+    }
+    return $indicePrimeraVictoria;
+}
 /**************************************/
 
 
