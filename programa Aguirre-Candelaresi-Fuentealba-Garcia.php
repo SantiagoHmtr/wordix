@@ -132,7 +132,8 @@ Verifica la longitud de una palabra y que todos sus caractéres sean alfabético
 * @param STRING $cadena
 * @return BOOLEAN $esLetra 
 */
-function esPalabra($cadena)
+function palabraEs($cadena) /* le cambie el nombre de esPalabra a palabraEs 
+por que en wordix.php hay una funcion con el mismo nombre */
 {
     //INT $cantidadCaracteres, $i, BOOLEAN $esLetra
     $cantidadCaracteres = strlen($cadena);
@@ -154,7 +155,8 @@ Pide al usuario un número entre un rango de valores. Si éste no es válido, se
 * @param INT $max
 * @return INT Retorna un número válido
 */
-function solicitarNumeroEntre($min, $max)
+function solicitarNumerosEntre($min, $max) /* le cambie el nombre de solicitarNumeroEntre a solicitarNumerosEntre 
+por que en wordix.php hay una funcion con el mismo nombre */
 {
     //INT $numero
     $numero = trim(fgets(STDIN));
@@ -172,8 +174,8 @@ function solicitarNumeroEntre($min, $max)
 
 /**************************************/
 /*inciso 6 */  
-ENCONTRE FALLA. COMO INVOCAR AL ARRAY COLECCION PARTIDAS QUE ESTA EN EXCEL +++++ CREO QUE LO RESOLVI
-	OTRA FALLA: SI PIDO LA PARTIDA 5, VA AL INDICE 5, O SEA, EL INDICE 0 SERIA LA PARTIDA 0------------------------------------------------------------------------
+//ENCONTRE FALLA. COMO INVOCAR AL ARRAY COLECCION PARTIDAS QUE ESTA EN EXCEL +++++ CREO QUE LO RESOLVI
+//	OTRA FALLA: SI PIDO LA PARTIDA 5, VA AL INDICE 5, O SEA, EL INDICE 0 SERIA LA PARTIDA 0----------//--------------------------------------------------------------
 /**
 Dado un número de partida, muestra en pantalla los datos de la partida
 * @param INT $numeroPartida
@@ -194,7 +196,7 @@ function mostrarDatosPartida($nroPartida){
     $coleccionPartidas[4] = ["palabraWordix" => "PIZZA", "jugador" => "majo", "intentos" => 5, "puntaje" => 5];
     $coleccionPartidas[5] = ["palabraWordix" => "HIJAS", "jugador" => "majo", "intentos" => 3, "puntaje" => 5];
 
-    echo "Partida WORDIX ".$nroPartida.": palabra ".$coleccionPartidas[$nroPartida]["palabraWordix"]."\n"
+    echo "Partida WORDIX ".$nroPartida.": palabra ".$coleccionPartidas[$nroPartida]["palabraWordix"]."\n"; //faltaba punto y coma
     echo "Jugador: ".$coleccionPartidas[$nroPartida]["jugador"]."\n";
     echo "Puntaje: ".$coleccionPartidas[$nroPartida]["puntaje"]." puntos\n";
 
@@ -261,46 +263,51 @@ function indicePartidaGanada ($partidas, $usuario){
 
 /**************************************/
 /*inciso 9 */
-function resumenJugador($matchHistory,$player)
-// string   $history
-{
-    $cantPartidas=0;$puntajeTotal=0;$victorias=0;$intento1=0;$intento2=0;$intento3=0;$intento4=0;$intento5=0;$intento6=0;
-    $i=0;
+/**************************************/
+/**
+ * Funcion que retorna el historial de un jugador en un array asosiativo a partir del historial de partidas almacenado
+ * @param array $matchHistory //array indexado
+ * @param string $player
+ * @return array //array asosiativo
+*/
+function resumenJugador($matchHistory,$player){
+    // int $totalPartidas, $i
+    // array $resumen //array asosiativo
+    $totalPartidas=0; $i=0;
+    $resumen=["nombre"=>$player,
+              "partidas"=>0,
+              "puntaje"=>0,
+              "victorias"=>0,
+              "intento 1"=>0,
+              "intento 2"=>0,
+              "intento 3"=>0,
+              "intento 4"=>0,
+              "intento 5"=>0,
+              "intento 6"=>0];
     $totalPartidas=count($matchHistory);
     for ($matchHistory[$i];$i<$totalPartidas;$i++)
     {
         if ($matchHistory[$i]["nombre"]==$player){
-        $cantPartidas++;
-        $puntajeTotal=$puntajeTotal+$matchHistory[$i]["puntaje"];
+        $resumen["partidas"]++;
+        $resumen["puntaje"]=$resumen["puntaje"]+$matchHistory[$i]["puntaje"];
             if ($matchHistory[$i]["puntaje"]>0){
-                $victorias++;
+                $resumen["victorias"]++;
             }
             if ($matchHistory[$i]["cantIntentos"]==1){
-                $intento1++;
+                $resumen["intento 1"]++;
             } elseif ($matchHistory[$i]["cantIntentos"]==2){
-                $intento2++;
+                $resumen["intento 2"]++;
             } elseif ($matchHistory[$i]["cantIntentos"]==3){
-                $intento3++;
+                $resumen["intento 3"]++;
             } elseif ($matchHistory[$i]["cantIntentos"]==4){
-                $intento4++;
+                $resumen["intento 4"]++;
             } elseif ($matchHistory[$i]["cantIntentos"]==5){
-                $intento5++;
+                $resumen["intento 5"]++;
             } elseif ($matchHistory[$i]["cantIntentos"]==6){
-                $intento6++;
+                $resumen["intento 6"]++;
             }
         }
     }
-    $resumen=[
-        "nombre"=>$player,
-        "partidas"=>$cantPartidas,
-        "puntaje"=>$puntajeTotal,
-        "victorias"=>$victorias,
-        "intento 1"=>$intento1,
-        "intento 2"=>$intento2,
-        "intento 3"=>$intento3,
-        "intento 4"=>$intento4,
-        "intento 5"=>$intento5,
-        "intento 6"=>$intento6];
     return $resumen;
 }
 /**************************************/
@@ -350,23 +357,23 @@ function div(){
 resolver una palabra de cinco letras en seis intentos. */
 //Declaración de variables:
 // int      $opcion
-// string   $nombreUsuario
-// array    $coleccionPalabras
+// string   $nombreUsuario, $palabra
+// array    $coleccionPalabras,$historialPartidas // array indexado
+// array    $resumenJugador // array
 
 //Inicialización de variables:
 $opcion=0;
 $nombreUsuario="Wordix";
+$palabra="Wordix";
 $coleccionPalabras=[];
+$historialPartidas=[];
 $resumenJugador=[];
 //Proceso:
-// $partida = jugarWordix("MELON", strtolower("MaJo"));php
-//print_r($partida);
-//imprimirResultado($partida);
 $coleccionPalabras=cargarColeccionPalabras();
 $historialPartidas=cargarPartidas();
 do {
     $opcion=seleccionarOpcion();
-    switch ($opcion) {  //la funcion switch reemplaza al condicional if-elseif, no compara si no que tiene una opcion para cada caso, 
+    switch ($opcion) {  //la funcion switch reemplaza al condicional if-elseif, no compara, si no que tiene una opcion para cada caso, 
                         //en caso de no tener COINCIDENCIA para el valor ingresado, el apartado "default" determina que hacer.
         case 1: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
@@ -388,6 +395,8 @@ do {
             break;
             //...
         case 5:
+            // 5) Mostrar resumen de Jugador, pide nombre del jugador y llama una funcion que consulta al historial de partidas
+            // devolviendo un array asosiativo ordenado en el formato solicitado con los datos del jugador.
             echo "Ingrese nombre de Jugador: ";
             $jugador=trim(fgets(STDIN)); 
             $resumenJ=resumenJugador($historialPartidas,$jugador);
@@ -407,13 +416,14 @@ do {
             echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
             div();
             break;
-            //...
         case 6: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
             echo "opcion 6";
             break;
             //...
         case 7:
+            // 7) Agregar una palabra de 5 letras a Wordix, usando la funcion "leerPalabra5Letras" obtiene una palabra toda en mayuscula y la agrega al
+            // array $coleccionPalabras a traves de la funcion "agregarPalabra"
             $palabra=leerPalabra5Letras();
             $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabra);
             break;
