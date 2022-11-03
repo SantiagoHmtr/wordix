@@ -35,9 +35,10 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 function solicitarNumeroEntre($min, $max)
 {
     //int $numero
+    echo "Ingrese numero de palabra: ";
     $numero = trim(fgets(STDIN));
     while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
+        echo "Debe ingresar un número entre " . $min . " y " . $max . ": \n";
         $numero = trim(fgets(STDIN));
     }
     return $numero;

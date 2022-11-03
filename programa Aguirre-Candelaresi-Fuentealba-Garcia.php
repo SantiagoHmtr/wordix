@@ -146,34 +146,15 @@ por que en wordix.php hay una funcion con el mismo nombre */
     return $esLetra;
 }
 
-/**************************************/
+
 /**************************************/
 /*inciso 5 */
-/**
-Pide al usuario un número entre un rango de valores. Si éste no es válido, se pide de nuevo
-* @param INT $min
-* @param INT $max
-* @return INT Retorna un número válido
-*/
-function solicitarNumerosEntre($min, $max) /* le cambie el nombre de solicitarNumeroEntre a solicitarNumerosEntre 
-por que en wordix.php hay una funcion con el mismo nombre */
-{
-    //INT $numero
-    $numero = trim(fgets(STDIN));
-    while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
-        $numero = trim(fgets(STDIN));
-    }
-    return $numero;
-}
+/**************************************/
+// La funcion solicitarNumeroEntre se encuentra en el archivo wordix.php
 
 /**************************************/
-
-
-
-
-/**************************************/
-/*inciso 6 */  
+/*inciso 6 */
+/**************************************/  
 //ENCONTRE FALLA. COMO INVOCAR AL ARRAY COLECCION PARTIDAS QUE ESTA EN EXCEL +++++ CREO QUE LO RESOLVI
 //	OTRA FALLA: SI PIDO LA PARTIDA 5, VA AL INDICE 5, O SEA, EL INDICE 0 SERIA LA PARTIDA 0----------//--------------------------------------------------------------
 /**
@@ -273,7 +254,7 @@ function indicePartidaGanada ($partidas, $usuario){
 function resumenJugador($matchHistory,$player){
     // int $totalPartidas, $i
     // array $resumen //array asosiativo
-    $totalPartidas=0; $i=0;
+    $totalPartidas=0;
     $resumen=["nombre"=>$player,
               "partidas"=>0,
               "puntaje"=>0,
@@ -285,7 +266,7 @@ function resumenJugador($matchHistory,$player){
               "intento 5"=>0,
               "intento 6"=>0];
     $totalPartidas=count($matchHistory);
-    for ($matchHistory[$i];$i<$totalPartidas;$i++)
+    for ($i=0;$i<$totalPartidas;$i++)
     {
         if ($matchHistory[$i]["nombre"]==$player){
         $resumen["partidas"]++;
@@ -343,11 +324,15 @@ function solicitarJugador(){
 
 /**************************************/
 /*inciso 11 */
-
-
+/**************************************/
+function mostrarPalabras($coleccionPalabras, $cantidadPalabras){
+    for($j=0;$j<$cantidadPalabras;$j++){
+        echo ($j+1)." - ".$coleccionPalabras[$j]."\n";
+    }
+}
 /**************************************/
 function div(){
-    echo "***********************************************************************\n";
+    echo "\n***********************************************************************\n";
 }
 
 /**************************************/
@@ -377,8 +362,12 @@ do {
                         //en caso de no tener COINCIDENCIA para el valor ingresado, el apartado "default" determina que hacer.
         case 1: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+            $palabraMax=count($coleccionPalabras);
+            div(); 
             $nombreUsuario=solicitarJugador();
-            echo "opcion 1";
+            escribirMensajeBienvenida($nombreUsuario);
+            $numeroPalabra=solicitarNumeroEntre(1,$palabraMax)-1;
+            $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
             break;
         case 2: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
@@ -422,19 +411,22 @@ do {
             break;
             //...
         case 7:
-            // 7) Agregar una palabra de 5 letras a Wordix, usando la funcion "leerPalabra5Letras" obtiene una palabra toda en mayuscula y la agrega al
-            // array $coleccionPalabras a traves de la funcion "agregarPalabra"
+            // 7) Agregar una palabra de 5 letras a Wordix, usando la funcion "leerPalabra5Letras" obtiene una palabra toda
+            // en mayuscula y la agrega al array $coleccionPalabras a traves de la funcion "agregarPalabra"
+            div();
             $palabra=leerPalabra5Letras();
             $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabra);
+            div();
+            echo "Palabra agregada con exito!!!\n";
             break;
-            //...
         case 8: 
             //Salir
+            div();
             echo "Muchas gracias por jugar Wordix!!!\n";
             break;
-            //...          
         default :
             //Caso general para cuando no se ingresa ninguna de la opciones del menu.
+            div();
             echo "ERROR!!! Ingrese una opcion correcta: \n";
             break;
     }
