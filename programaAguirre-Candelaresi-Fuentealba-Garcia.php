@@ -43,10 +43,11 @@ Usuario Github: CandelaresiPedro
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
+
 /**************************************/
 /*inciso 1 */
-/**
- * Obtiene una colección de palabras
+/**************************************/
+ /** Obtiene una colección de palabras
  * @return array
  */
 function cargarColeccionPalabras()
@@ -61,10 +62,11 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
+
 /**************************************/
 /*inciso 2 */
-/**
-*Inicializa con 10 partidas ya jugadas
+/**************************************/
+/**Inicializa con 10 partidas ya jugadas
 *@param String $jugador,$palabraWordix
 *@param int $intentos,$puntaje
 *@return array
@@ -82,11 +84,11 @@ function cargarPartidas(){
 	$coleccionPartidas[9]=["palabraWordix"=>"FUEGO","nombre"=>"whoami99","cantIntentos"=>3,"puntaje"=>0];
     return $coleccionPartidas;
 }
+
 /**************************************/
 /*inciso 3 */
-/**
-* Crea el menu de opciones del juego
-* Insiso 3
+/**************************************/
+/** Crea el menu de opciones del juego
 * @return int
 */
 function seleccionarOpcion()
@@ -110,31 +112,9 @@ function seleccionarOpcion()
 }
 
 /**************************************/
-
-
-
-
-/**************************************/
 /*inciso 4 */
-/**
-Verifica la longitud de una palabra y que todos sus caractéres sean alfabéticos
-* @param STRING $cadena
-* @return BOOLEAN $esLetra 
-*/
-function palabraEs($cadena) /* le cambie el nombre de esPalabra a palabraEs 
-por que en wordix.php hay una funcion con el mismo nombre */
-{
-    //INT $cantidadCaracteres, $i, BOOLEAN $esLetra
-    $cantidadCaracteres = strlen($cadena);
-    $esLetra = true;
-    $i = 0;
-    while ($esLetra && $i < $cantidadCaracteres) {
-        $esLetra =  ctype_alpha($cadena[$i]);
-        $i++;
-    }
-    return $esLetra;
-}
-
+/**************************************/
+// La funcion esPalabra se encuentra en el archivo wordix.php
 
 /**************************************/
 /*inciso 5 */
@@ -165,14 +145,9 @@ function mostrarDatosPartida($coleccionPartidas,$nroPartida){
     }
 }
 
-
-/**************************************/
-
-
-
-
 /**************************************/
 /*inciso 7 */
+/**************************************/
 /**
 *Agrega palabras nuevas
 *@param String $palabra
@@ -281,12 +256,10 @@ function solicitarJugador(){
 /**************************************/
 /*inciso 11 */
 /**************************************/
-function mostrarPalabras($coleccionPalabras, $cantidadPalabras){
-    for($j=0;$j<$cantidadPalabras;$j++){
-        echo ($j+1)." - ".$coleccionPalabras[$j]."\n";
-    }
-}
-/**************************************/
+
+/********************************************/
+/* FUNCIONES ADICIONALES FUERA DEL PRACTICO */
+/********************************************/
 /**
 *Dibuja una division en la pantalla
 */
@@ -307,7 +280,15 @@ function agregarPartida($coleccionPartidas,$partida)
                                    "puntaje"=>$partida["puntaje"]]);
     return $coleccionPartidas;
 }
-
+/**
+* Funcion sin parametros que solo detiene la ejecucion del programa para que el usuario vea los datos presentados
+* en pantalla.
+*/
+function pausa(){
+// string $pausa
+    echo "\nPresione la tecla ENTER para continuar...";
+    $pausa=fgets(STDIN);
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -342,6 +323,7 @@ do {
             $numeroPalabra=solicitarNumeroEntre(1,$palabraMax)-1;
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
             $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
+            pausa();
             break;
         case 2:
             // 2) Jugar al Wordix con una palabra aleatoria
@@ -351,7 +333,8 @@ do {
             $numeroPalabra=(int)rand(1, $palabraMax);
             echo "Se eligio aleatoreamente la palabra numero: ".$numeroPalabra;
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
-            $historialPartidas=agregarPartida($historialPartidas,$partidaNueva); 
+            $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
+            pausa(); 
             break;
         case 3: 
             // 3) Mostrar una partida
@@ -360,6 +343,7 @@ do {
             $nroPartida=solicitarNumeroEntre(1,$partidaMax)-1;
             mostrarDatosPartida($historialPartidas,($nroPartida));
             div();
+            pausa();
             break;
             //...
         case 4: 
@@ -369,6 +353,7 @@ do {
             div();
             mostrarDatosPartida($historialPartidas,$primerPartida);
             div();
+            pausa();
             break;
             //...
         case 5:
@@ -392,10 +377,12 @@ do {
             echo "  Intento 5: ".$resumenJ["intento 5"]."\n";
             echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
             div();
+            pausa();
             break;
         case 6: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
             echo "opcion 6";
+            pausa();
             break;
             //...
         case 7:
@@ -406,6 +393,7 @@ do {
             $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabra);
             div();
             echo "Palabra agregada con exito!!!\n";
+            pausa();
             break;
         case 8: 
             //Salir
