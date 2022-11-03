@@ -303,12 +303,13 @@ do {
             echo "Ingrese nombre de Jugador: ";
             $jugador=trim(fgets(STDIN)); 
             $resumenJ=resumenJugador($historialPartidas,$jugador);
+            $porcentaje=(int)($resumenJ["victorias"]*100/$resumenJ["partidas"]);
             div();
             echo "Jugador: ".$resumenJ["nombre"]."\n";
             echo "Partidas: ".$resumenJ["partidas"]."\n";
             echo "Puntaje Total: ".$resumenJ["puntaje"]."\n";
             echo "Victorias: ".$resumenJ["victorias"]."\n";
-            echo "Porcentaje Victorias: ".$resumenJ["nombre"]."\n";
+            echo "Porcentaje Victorias: ".$porcentaje."%\n";
             echo "Adivinadas\n";
             echo "  Intento 1: ".$resumenJ["intento 1"]."\n";
             echo "  Intento 2: ".$resumenJ["intento 2"]."\n";
