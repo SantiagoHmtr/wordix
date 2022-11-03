@@ -171,25 +171,38 @@ function solicitarNumeroEntre($min, $max)
 
 
 /**************************************/
-/*inciso 6 */  ENCONTRE FALLA. COMO INVOCAR AL ARRAY COLECCION PARTIDAS QUE ESTA EN EXCEL ------------------------------------------------------------------------
+/*inciso 6 */  
+ENCONTRE FALLA. COMO INVOCAR AL ARRAY COLECCION PARTIDAS QUE ESTA EN EXCEL +++++ CREO QUE LO RESOLVI
+	OTRA FALLA: SI PIDO LA PARTIDA 5, VA AL INDICE 5, O SEA, EL INDICE 0 SERIA LA PARTIDA 0------------------------------------------------------------------------
 /**
 Dado un número de partida, muestra en pantalla los datos de la partida
 * @param INT $numeroPartida
 * @return STRING Retorna un mensaje
 */
-function m6partidas($numeroPartida)
-{
-    //STRING $mensaje
+function mostrarDatosPartida($nroPartida){
+    //$nroPartida = Solicitar entre (0, 9)
+    //Recorrido parcial
+    //$coleccionPartidas = cargarPartidas();
 
-    if ($puntaje != 0){
-        $mensajeIntentos = "adivinó la palabra en ".$intentos." intentos";
+		
+    //VER QUE ESTE ARRAY ESTE BIEN COLOCADO ACA-----------------------------------------------------------------------------------------------
+		
+    $coleccionPartidas[0] = ["palabraWordix" => "QUESO", "jugador" => "majo", "intentos" => 0, "puntaje" => 0];
+    $coleccionPartidas[1] = ["palabraWordix" => "MANGO", "jugador" => "rudolf", "intentos" => 3, "puntaje" => 14];
+    $coleccionPartidas[2] = ["palabraWordix" => "QUESO", "jugador" => "pink2000", "intentos" => 6, "puntaje" => 10];
+    $coleccionPartidas[3] = ["palabraWordix" => "Fuego", "jugador" => "pink2000", "intentos" => 6, "puntaje" => 0];
+    $coleccionPartidas[4] = ["palabraWordix" => "PIZZA", "jugador" => "majo", "intentos" => 5, "puntaje" => 5];
+    $coleccionPartidas[5] = ["palabraWordix" => "HIJAS", "jugador" => "majo", "intentos" => 3, "puntaje" => 5];
+
+    echo "Partida WORDIX ".$nroPartida.": palabra ".$coleccionPartidas[$nroPartida]["palabraWordix"]."\n"
+    echo "Jugador: ".$coleccionPartidas[$nroPartida]["jugador"]."\n";
+    echo "Puntaje: ".$coleccionPartidas[$nroPartida]["puntaje"]." puntos\n";
+
+    if ($coleccionPartidas[$nroPartida]["puntaje"] != 0){
+        echo "Adivinó la palabra en ".$coleccionPartidas[$nroPartida]["intentos"]." intentos\n";
     }else{
-        $mensajeIntentos = "No adivinó la palabra";
+        echo "No adivinó la palabra\n";
     }
-
-    $mensaje = "Partida WORDIX ".$numeroPartida.": palabra ".$palabra."\nJugador: ".$usuario."\nPuntaje: ".$puntaje."\nIntentos: ".$mensajeIntentos;
-
-    return $mensaje;
 }
 
 
