@@ -331,11 +331,23 @@ function esIntentoGanado($estructuraPalabraIntento)
 /**
  * ****COMPLETAR***** documentación de la intefaz
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($palabraPartida,$intento)  /* ****COMPLETAR***** parámetros formales necesarios */
 {
-
-    /* ****COMPLETAR***** cuerpo de la función*/
-    return 0;
+    $puntos=0;
+    for ($l=0;$l<=4;$l++){
+        if ($palabraPartida[$l]=="A"||$palabraPartida[$l]=="E"||$palabraPartida[$l]=="I"||$palabraPartida[$l]=="O"||$palabraPartida[$l]=="U"){
+            $puntos++;
+            echo "vocal: ".$puntos."\n";
+        }elseif($palabraPartida[$l]<="M"){
+            $puntos=$puntos+2;
+            echo "menor o igual a m: ".$puntos."\n";
+        }else{
+            $puntos=$puntos+3;
+            echo "mayor a m: ".$puntos."\n";
+        }
+    }
+    $puntos=$puntos+(7-$intento);
+    return $puntos;
 }
 
 /**
@@ -370,7 +382,8 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     if ($ganoElIntento) {
         $nroIntento--;
-        $puntaje = obtenerPuntajeWordix();
+        $puntaje = obtenerPuntajeWordix($palabraWordix,$nroIntento);
+        div();
         echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento

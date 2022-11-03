@@ -88,9 +88,12 @@ function cargarPartidas(){
 *@param int $intentos,$puntaje
 *@return array
 */
-function agregarPartida($palabraWordix,$jugador,$intentos,$puntaje)
+function agregarPartida($coleccionPartidas,$partida)
 {
-    array_push($coleccionPartidas,["palabraWordix"=>$palabraWordix,"nombre"=>$jugador,"cantIntentos"=>$intentos,"puntaje"=>$puntaje]);
+    array_push($coleccionPartidas,["palabraWordix"=>$partida["palabraWordix"],
+                                   "nombre"=>$partida["jugador"],
+                                   "cantIntentos"=>$partida["intentos"],
+                                   "puntaje"=>$partida["puntaje"]]);
     return $coleccionPartidas;
 }
 /**************************************/
@@ -365,9 +368,9 @@ do {
             $palabraMax=count($coleccionPalabras);
             div(); 
             $nombreUsuario=solicitarJugador();
-            escribirMensajeBienvenida($nombreUsuario);
             $numeroPalabra=solicitarNumeroEntre(1,$palabraMax)-1;
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
+            $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
             break;
         case 2: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
@@ -423,6 +426,9 @@ do {
             //Salir
             div();
             echo "Muchas gracias por jugar Wordix!!!\n";
+            div();
+            echo "Saliendo...";
+            div();
             break;
         default :
             //Caso general para cuando no se ingresa ninguna de la opciones del menu.
