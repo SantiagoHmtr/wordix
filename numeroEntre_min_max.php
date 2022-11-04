@@ -12,8 +12,12 @@
        c)aetsgdhhf
     5) 16gdsfdgfhgkj
     6) 16
+    7) Los extremos, que en mi caso fueron $min = 15 y $max = 20
     
-EL UNICO QUE FUNCIONÓ FUE EL PUNTO 6) DONDE INGRESE 16
+LOS UNICOS QUE FUNCIONARON FUERON LOS PUNTOS 6) y 7)
+
+
+HAY echo QUE ESTÁN DE MÁS, SON PARA VER QUE VALOR LARGA Y COMO ESTÁ TRABAJANDO EL PROGRAMA
 */
 
 
@@ -57,13 +61,13 @@ ESTA ES LA QUE HICE
  */
 function solicitarNumeroEntre($min, $max)
 {
-    echo "ingrese un numero: ";
+    echo "ingrese un numero entero entre ".$min." y ".$max.": ";
     $numero = trim(fgets(STDIN));
     echo "numero: ".$numero."\n";
     echo "\n";
 
         while (!ctype_digit($numero) || $numero < $min || $numero > $max) {
-            echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
+            echo "Debe ingresar un número entero entre " . $min . " y " . $max . ": ";
             $numero = trim(fgets(STDIN));
             echo "\n";
             echo "El numero es: ".$numero."\n";
