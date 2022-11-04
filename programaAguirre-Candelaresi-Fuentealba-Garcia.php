@@ -398,7 +398,6 @@ do {
             div(); 
             $nombreUsuario=solicitarJugador();
             do{
-                echo "Ingrese numero de palabra: ";
                 $numeroPalabra=(int)rand($min, $palabraMax);
                 $numeroPalabra--;
                 $jugo=repitePalabra($historialPartidas,$coleccionPalabras,$numeroPalabra,$nombreUsuario);
