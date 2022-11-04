@@ -13,8 +13,9 @@
     5) 16gdsfdgfhgkj
     6) 16
     7) Los extremos, que en mi caso fueron $min = 15 y $max = 20
+    8) El 16.00 no lo toma
     
-LOS UNICOS QUE FUNCIONARON FUERON LOS PUNTOS 6) y 7)
+LOS UNICOS QUE FUNCIONARON FUERON LOS PUNTOS 6) y 7), DEBERÍA ENTRAR EL 8) TAMBIÉN
 
 
 HAY echo QUE ESTÁN DE MÁS, SON PARA VER QUE VALOR LARGA Y COMO ESTÁ TRABAJANDO EL PROGRAMA

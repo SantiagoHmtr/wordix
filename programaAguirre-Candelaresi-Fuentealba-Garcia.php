@@ -263,35 +263,35 @@ function solicitarJugador(){
 *las palabras, en este caso la funcion comparacionAlfabetica es la que nos permite ordenar primero por la clave
 *"nombre" y luego por la clave "palabraWordix"
 */
-function ordenAlfabetico($partidasParaOrdenar) {   
-    function comparacionAlfabetica($partidas0, $partidas1){
-        $asc = 0;
-    if ($partidas0["nombre"] == $partidas1["nombre"]) {   
-          if ($partidas0["palabraWordix"] == $partidas1["palabraWordix"])  {
-                $asc = 0;
-          } 
-          elseif ($partidas0["nombre"] == $partidas1["nombre"]){
-            if ($partidas0["palabraWordix"] < $partidas1["palabraWordix"]){
-                $asc = -1;
+function comparacionAlfabetica($partidas0, $partidas1){
+    $asc = 0;
+if ($partidas0["nombre"] == $partidas1["nombre"]) {   
+      if ($partidas0["palabraWordix"] == $partidas1["palabraWordix"])  {
+            $asc = 0;
+      } 
+      elseif ($partidas0["nombre"] == $partidas1["nombre"]){
+        if ($partidas0["palabraWordix"] < $partidas1["palabraWordix"]){
+            $asc = -1;
 
-            }else { $asc = 1;}
-          }
-    }   
-    elseif($partidas0["nombre"] < $partidas1["nombre"]){
-            if($partidas0["palabraWordix"] < $partidas1["palabraWordix"]){
-                $asc =-1;
-
-        }
-         
+        }else { $asc = 1;}
+      }
+}   
+elseif($partidas0["nombre"] < $partidas1["nombre"]){
+        if($partidas0["palabraWordix"] < $partidas1["palabraWordix"]){
+            $asc =-1;
 
     }
-    else{
-        $asc = 1;
-    } 
-    return $asc;
-    }   
-    //Como se requiere una funcion sin retorno, se requiere de implementar una funcion dentro de otra
-    //La funcion interior nos da como uasort ordenara los valores de las claves, y
+     
+
+}
+else{
+    $asc = 1;
+} 
+return $asc;
+}   
+
+function ordenAlfabetico($partidasParaOrdenar) {   
+    
     // la funcion ordenAlfabetico se encarga de llamar a la funcion uasort e imprimir con print_r
     uasort($partidasParaOrdenar , 'comparacionAlfabetica');
     print_r($partidasParaOrdenar);

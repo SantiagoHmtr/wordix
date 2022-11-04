@@ -26,7 +26,6 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-//LISTO
 /** Pide al usuario un número entre un rango de valores. Si éste no es válido, se pide de nuevo
  * @param INT $min
  * @param INT $max
@@ -34,12 +33,19 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
  */
 function solicitarNumeroEntre($min, $max)
 {
-    //int $numero
+    echo "ingrese un numero entero entre ".$min." y ".$max.": ";
     $numero = trim(fgets(STDIN));
-    while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": \n";
-        $numero = trim(fgets(STDIN));
-    }
+    echo "numero: ".$numero."\n";
+    echo "\n";
+
+        while (!ctype_digit($numero) || $numero < $min || $numero > $max) {
+            echo "Debe ingresar un número entero entre " . $min . " y " . $max . ": ";
+            $numero = trim(fgets(STDIN));
+            echo "\n";
+            echo "El numero es: ".$numero."\n";
+        }
+    echo "El numero final es: ".$numero."\n";
+
     return $numero;
 }
 
@@ -216,7 +222,7 @@ function escribirTeclado($teclado)
 
 /**
  * Escribe en pantalla los intentos de Wordix para adivinar la palabra
- * @param array $estructuraIntentosWordix
+ * @param array $estruturaIntentosWordix
  */
 function imprimirIntentosWordix($estructuraIntentosWordix)
 {
@@ -247,11 +253,11 @@ function imprimirIntentosWordix($estructuraIntentosWordix)
  * y la palabra que intenta adivinar la palabra wordix.
  * devuelve la estructura de intentos Wordix modificada con el intento.
  * @param string $palabraWordix
- * @param array $estructuraIntentosWordix
+ * @param array $estruturaIntentosWordix
  * @param string $palabraIntento
  * @return array estructura wordix modificada
  */
-function analizarPalabraIntento($palabraWordix, $estructuraIntentosWordix, $palabraIntento)
+function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palabraIntento)
 {
     $cantCaracteres = strlen($palabraIntento);
     $estructuraPalabraIntento = []; /*almacena cada letra de la palabra intento con su estado */
@@ -270,8 +276,8 @@ function analizarPalabraIntento($palabraWordix, $estructuraIntentosWordix, $pala
         array_push($estructuraPalabraIntento, ["letra" => $letraIntento, "estado" => $estado]);
     }
 
-    array_push($estructuraIntentosWordix, $estructuraPalabraIntento);
-    return $estructuraIntentosWordix;
+    array_push($estruturaIntentosWordix, $estructuraPalabraIntento);
+    return $estruturaIntentosWordix;
 }
 
 /**
