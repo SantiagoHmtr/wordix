@@ -422,7 +422,9 @@ do {
                 echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
                 div();
             } else {
-                echo "El jugador ".$jugador." aun no ha jugado Wordix!!! No registra ninguna partida.\n";
+                div();
+                echo "El jugador ".$jugador." aun no ha jugado Wordix! No registra ninguna partida.\n";
+                div();
                 }
             pausa();
             break;
