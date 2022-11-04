@@ -163,7 +163,7 @@ function agregarPalabra($coleccionPalabras,$palabra){
 /*inciso 8 */
 /**************************************/
 /**
-Dadas una colección de partidas y el nombre y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
+* Dadas una colección de partidas y el nombre y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
 * @param INT $cantidadPartidas
 * @param STRING $usuario
 * @return INT el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
@@ -405,21 +405,26 @@ do {
             echo "Ingrese nombre de Jugador: ";
             $jugador=trim(fgets(STDIN)); 
             $resumenJ=resumenJugador($historialPartidas,$jugador);
-            $porcentaje=(int)($resumenJ["victorias"]*100/$resumenJ["partidas"]);
-            div();
-            echo "Jugador: ".$resumenJ["nombre"]."\n";
-            echo "Partidas: ".$resumenJ["partidas"]."\n";
-            echo "Puntaje Total: ".$resumenJ["puntaje"]."\n";
-            echo "Victorias: ".$resumenJ["victorias"]."\n";
-            echo "Porcentaje Victorias: ".$porcentaje."%\n";
-            echo "Adivinadas\n";
-            echo "  Intento 1: ".$resumenJ["intento 1"]."\n";
-            echo "  Intento 2: ".$resumenJ["intento 2"]."\n";
-            echo "  Intento 3: ".$resumenJ["intento 3"]."\n";
-            echo "  Intento 4: ".$resumenJ["intento 4"]."\n";
-            echo "  Intento 5: ".$resumenJ["intento 5"]."\n";
-            echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
-            div();
+            if ($resumenJ["partidas"]!=0)
+                {
+                $porcentaje=(int)($resumenJ["victorias"]*100/$resumenJ["partidas"]);
+                div();
+                echo "Jugador: ".$resumenJ["nombre"]."\n";
+                echo "Partidas: ".$resumenJ["partidas"]."\n";
+                echo "Puntaje Total: ".$resumenJ["puntaje"]."\n";
+                echo "Victorias: ".$resumenJ["victorias"]."\n";
+                echo "Porcentaje Victorias: ".$porcentaje."%\n";
+                echo "Adivinadas\n";
+                echo "  Intento 1: ".$resumenJ["intento 1"]."\n";
+                echo "  Intento 2: ".$resumenJ["intento 2"]."\n";
+                echo "  Intento 3: ".$resumenJ["intento 3"]."\n";
+                echo "  Intento 4: ".$resumenJ["intento 4"]."\n";
+                echo "  Intento 5: ".$resumenJ["intento 5"]."\n";
+                echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
+                div();
+            } else {
+                echo "El jugador aun no ha jugado Wordix!!! No registra ninguna partida.\n";
+                }
             pausa();
             break;
         case 6: 
