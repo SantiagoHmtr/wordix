@@ -363,10 +363,12 @@ do {
         case 1: 
             // 1) Jugar al Wordix con una palabra elegida
             $palabraMax=count($coleccionPalabras);
+            $min=1; //documentar
             div(); 
             $nombreUsuario=solicitarJugador();
             echo "Ingrese numero de palabra: ";
-            $numeroPalabra=solicitarNumeroEntre(1,$palabraMax)-1;
+            $numeroPalabra=solicitarNumeroEntre($min,$palabraMax);
+            $numeroPalabra--;
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
             $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
             pausa();
@@ -433,7 +435,7 @@ do {
             pausa();
             break;
         case 6: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            // 6) Mostrar listado de partidas ordenadas por jugador y por palabra
             echo "opcion 6";
             ordenAlfabetico($historialPartidas);
             pausa();
