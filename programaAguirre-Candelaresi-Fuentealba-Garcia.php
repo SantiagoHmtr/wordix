@@ -133,11 +133,14 @@ function mostrarDatosPartida($coleccionPartidas,$nroPartida){
     //$nroPartida = Solicitar entre (0, 9)
     //Recorrido parcial
     //$coleccionPartidas = cargarPartidas();
+	
     div();
+    //Muestra en pantalla el número de partida, la palabra con la que se jugó, el nombre del jugador y su puntaje.
     echo "Partida WORDIX ".($nroPartida+1).": palabra ".$coleccionPartidas[$nroPartida]["palabraWordix"]."\n";
     echo "Jugador: ".$coleccionPartidas[$nroPartida]["nombre"]."\n";
     echo "Puntaje: ".$coleccionPartidas[$nroPartida]["puntaje"]." puntos\n";
 
+    //Muestra en pantalla si adivinó o no la palabra, basandose en el puntaje obtenido en esa partida.
     if ($coleccionPartidas[$nroPartida]["puntaje"] != 0){
         echo "Adivinó la palabra en ".$coleccionPartidas[$nroPartida]["cantIntentos"]." intentos\n";
     }else{
@@ -163,12 +166,13 @@ function agregarPalabra($coleccionPalabras,$palabra){
 /*inciso 8 */
 /**************************************/
 /**
-* Dadas una colección de partidas y el nombre y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
+* Dadas una colección de partidas y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
 * @param INT $cantidadPartidas
 * @param STRING $usuario
 * @return INT el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
 */
 function indicePartidaGanada($partidas, $usuario){
+    //Array vacío al que le asigno valores por medio de una estructura repetitiva, hasta encontrar el valor deseado y mostrarlo en pantalla
     $indicePrimeraVictoria = [];
     for ($i = 0; $i < count ($partidas); $i++) {
         if ($partidas[$i]["nombre"] == $usuario && ($partidas[$i]["puntaje"] > 0)) {
