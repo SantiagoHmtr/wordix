@@ -67,11 +67,10 @@ function cargarColeccionPalabras()
 /*inciso 2 */
 /**************************************/
 /**Inicializa con 10 partidas ya jugadas
-*@param String $jugador,$palabraWordix
-*@param int $intentos,$puntaje
-*@return array
+* @return array // array indezado
 */
 function cargarPartidas(){
+    // array $coleccionPartidas // array indexado
 	$coleccionPartidas[0]=["palabraWordix"=>"QUESO","nombre"=>"majo","cantIntentos"=>0,"puntaje"=>0];
 	$coleccionPartidas[1]=["palabraWordix"=>"CASAS","nombre"=>"rudolf","cantIntentos"=>3,"puntaje"=>14];
 	$coleccionPartidas[2]=["palabraWordix"=>"QUESO","nombre"=>"pink2000","cantIntentos"=>6,"puntaje"=>10];
@@ -133,11 +132,14 @@ function mostrarDatosPartida($coleccionPartidas,$nroPartida){
     //$nroPartida = Solicitar entre (0, 9)
     //Recorrido parcial
     //$coleccionPartidas = cargarPartidas();
+	
     div();
+    //Muestra en pantalla el número de partida, la palabra con la que se jugó, el nombre del jugador y su puntaje.
     echo "Partida WORDIX ".($nroPartida+1).": palabra ".$coleccionPartidas[$nroPartida]["palabraWordix"]."\n";
     echo "Jugador: ".$coleccionPartidas[$nroPartida]["nombre"]."\n";
     echo "Puntaje: ".$coleccionPartidas[$nroPartida]["puntaje"]." puntos\n";
 
+    //Muestra en pantalla si adivinó o no la palabra, basandose en el puntaje obtenido en esa partida.
     if ($coleccionPartidas[$nroPartida]["puntaje"] != 0){
         echo "Adivinó la palabra en ".$coleccionPartidas[$nroPartida]["cantIntentos"]." intentos\n";
     }else{
@@ -163,12 +165,13 @@ function agregarPalabra($coleccionPalabras,$palabra){
 /*inciso 8 */
 /**************************************/
 /**
-Dadas una colección de partidas y el nombre y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
+* Dadas una colección de partidas y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
 * @param INT $cantidadPartidas
 * @param STRING $usuario
 * @return INT el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
 */
 function indicePartidaGanada($partidas, $usuario){
+    //Array vacío al que le asigno valores por medio de una estructura repetitiva, hasta encontrar el valor deseado y mostrarlo en pantalla
     $indicePrimeraVictoria = [];
     for ($i = 0; $i < count ($partidas); $i++) {
         if ($partidas[$i]["nombre"] == $usuario && ($partidas[$i]["puntaje"] > 0)) {
@@ -233,12 +236,11 @@ function resumenJugador($matchHistory,$player){
 /*inciso 10 */
 /**************************************/
 /**Esta funcion solicita el nombre del jugador y retorna el mismo nombre pero con los caracteres en minuscula
- * @param null
- * @var string $jugador, $nombre
- * @return string $jugador
+ * @return string
 */
 
 function solicitarJugador(){
+    // string $jugador, $nombre
     /*Se utiliza la repetitiva do-while, para que la funcion genere iteraciones hasta que se ingrese
     *un nombre el cual su primer caracter sea una letra*/
     do{
@@ -310,9 +312,9 @@ function div(){
 }
 /**
 *Carga la partida recien jugada al array (Historial de partidas)
-*@param String $jugador,$palabraWordix
-*@param int $intentos,$puntaje
-*@return array
+*@param array $coleccionPartidas // array indexado
+*@param array $partida // array asosiativo
+*@return array // array asosiativo
 */
 function agregarPartida($coleccionPartidas,$partida)
 {
@@ -337,18 +339,15 @@ function pausa(){
 /* Wordix es un Juego de palabras muy adictivo en el que tendrás que adivinar palabras. Tu tarea del usuario consiste en
 resolver una palabra de cinco letras en seis intentos. */
 //Declaración de variables:
-// int      $opcion
+// int      $opcion, $min, $palabraMax, $numeroPalabra, $partidaMax, $nroPartida, $porcentaje
 // string   $nombreUsuario, $palabra
-// array    $coleccionPalabras,$historialPartidas // array indexado
-// array    $resumenJugador // array
+// array    $coleccionPalabras, $partidaNueva, $historialPartidas // array indexado
+// array    $primerPartida, $resumenJ // array asociativo
 
 //Inicialización de variables:
-$opcion=0;
-$nombreUsuario="Wordix";
-$palabra="Wordix";
-$coleccionPalabras=[];
-$historialPartidas=[];
-$resumenJugador=[];
+$opcion=0; $min=1; $palabraMax=0; $partidaMax=0; $numeroPalabra=0; $nroPartida=0; $porcentaje=0;
+$nombreUsuario="wordix"; $palabra="wordix";
+$partidaNueva=[]; $primerPartida=[]; $coleccionPalabras=[]; $historialPartidas=[]; $resumenJ=[];
 //Proceso:
 $coleccionPalabras=cargarColeccionPalabras();
 $historialPartidas=cargarPartidas();
@@ -362,7 +361,8 @@ do {
             div(); 
             $nombreUsuario=solicitarJugador();
             echo "Ingrese numero de palabra: ";
-            $numeroPalabra=solicitarNumeroEntre(1,$palabraMax)-1;
+            $numeroPalabra=solicitarNumeroEntre($min,$palabraMax);
+            $numeroPalabra--;
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
             $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
             pausa();
@@ -372,8 +372,8 @@ do {
             $palabraMax=count($coleccionPalabras);
             div(); 
             $nombreUsuario=solicitarJugador();
-            $numeroPalabra=(int)rand(1, $palabraMax);
-            echo "Se eligio aleatoreamente la palabra numero: ".$numeroPalabra;
+            $numeroPalabra=(int)rand($min, $palabraMax);
+            echo "Se eligio aleatoreamente la palabra numero: ".$numeroPalabra."\n";
             $numeroPalabra--;
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
             $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
@@ -383,7 +383,7 @@ do {
             // 3) Mostrar una partida
             $partidaMax=count($historialPartidas);
             echo "Indique numero de partida a visualizar: ";
-            $nroPartida=solicitarNumeroEntre(1,$partidaMax)-1;
+            $nroPartida=solicitarNumeroEntre($min,$partidaMax)-1;
             mostrarDatosPartida($historialPartidas,($nroPartida));
             div();
             pausa();
@@ -391,8 +391,8 @@ do {
             //...
         case 4: 
             // 4) Mostrar la primer partida ganadora, solicita un nombre de jugador y devuelve la primer partida ganadora
-            $usuarioPartida=solicitarJugador();//falta declarar
-            $primerPartida=indicePartidaGanada($historialPartidas, $usuarioPartida);//falta declarar
+            $nombreUsuario=solicitarJugador();//falta declarar
+            $primerPartida=indicePartidaGanada($historialPartidas, $nombreUsuario);
             div();
             mostrarDatosPartida($historialPartidas,$primerPartida);
             div();
@@ -402,28 +402,34 @@ do {
         case 5:
             // 5) Mostrar resumen de Jugador, pide nombre del jugador y llama una funcion que consulta al historial de partidas
             // devolviendo un array asosiativo ordenado en el formato solicitado con los datos del jugador.
-            echo "Ingrese nombre de Jugador: ";
-            $jugador=trim(fgets(STDIN)); 
-            $resumenJ=resumenJugador($historialPartidas,$jugador);
-            $porcentaje=(int)($resumenJ["victorias"]*100/$resumenJ["partidas"]);
-            div();
-            echo "Jugador: ".$resumenJ["nombre"]."\n";
-            echo "Partidas: ".$resumenJ["partidas"]."\n";
-            echo "Puntaje Total: ".$resumenJ["puntaje"]."\n";
-            echo "Victorias: ".$resumenJ["victorias"]."\n";
-            echo "Porcentaje Victorias: ".$porcentaje."%\n";
-            echo "Adivinadas\n";
-            echo "  Intento 1: ".$resumenJ["intento 1"]."\n";
-            echo "  Intento 2: ".$resumenJ["intento 2"]."\n";
-            echo "  Intento 3: ".$resumenJ["intento 3"]."\n";
-            echo "  Intento 4: ".$resumenJ["intento 4"]."\n";
-            echo "  Intento 5: ".$resumenJ["intento 5"]."\n";
-            echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
-            div();
+            $nombreUsuario=solicitarJugador();
+            $resumenJ=resumenJugador($historialPartidas,$nombreUsuario);
+            if ($resumenJ["partidas"]!=0)
+                {
+                $porcentaje=(int)($resumenJ["victorias"]*100/$resumenJ["partidas"]);
+                div();
+                echo "Jugador: ".$resumenJ["nombre"]."\n";
+                echo "Partidas: ".$resumenJ["partidas"]."\n";
+                echo "Puntaje Total: ".$resumenJ["puntaje"]."\n";
+                echo "Victorias: ".$resumenJ["victorias"]."\n";
+                echo "Porcentaje Victorias: ".$porcentaje."%\n";
+                echo "Adivinadas\n";
+                echo "  Intento 1: ".$resumenJ["intento 1"]."\n";
+                echo "  Intento 2: ".$resumenJ["intento 2"]."\n";
+                echo "  Intento 3: ".$resumenJ["intento 3"]."\n";
+                echo "  Intento 4: ".$resumenJ["intento 4"]."\n";
+                echo "  Intento 5: ".$resumenJ["intento 5"]."\n";
+                echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
+                div();
+            } else {
+                div();
+                echo "El jugador ".$nombreUsuario." aun no ha jugado Wordix! No registra ninguna partida.\n";
+                div();
+                }
             pausa();
             break;
         case 6: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            // 6) Mostrar listado de partidas ordenadas por jugador y por palabra
             echo "opcion 6";
             ordenAlfabetico($historialPartidas);
             pausa();
