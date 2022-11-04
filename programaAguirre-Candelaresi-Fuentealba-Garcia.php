@@ -324,6 +324,22 @@ function agregarPartida($coleccionPartidas,$partida)
                                    "puntaje"=>$partida["puntaje"]]);
     return $coleccionPartidas;
 }
+/** Funcion para comprobar si el jugador ya jugo con una palabra
+ * 
+ */
+function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugador)
+{
+    $maxP=count($historialDePartidas);
+    $yaJugo=false;
+    for($p=0;$p<$maxP;$p++){
+        if ($historialDePartidas[$p]["palabraWordix"]==$coleccionDePalabras[$palabra]&&$historialDePartidas[$p]["nombre"]==$jugador){
+            $yaJugo=true;
+        }        
+    }
+    echo $yaJugo."\n";
+    return $yaJugo;
+}
+
 /**
 * Funcion sin parametros que solo detiene la ejecucion del programa para que el usuario vea los datos presentados
 * en pantalla.
@@ -339,12 +355,14 @@ function pausa(){
 /* Wordix es un Juego de palabras muy adictivo en el que tendrás que adivinar palabras. Tu tarea del usuario consiste en
 resolver una palabra de cinco letras en seis intentos. */
 //Declaración de variables:
+// boolean  $jugo
 // int      $opcion, $min, $palabraMax, $numeroPalabra, $partidaMax, $nroPartida, $porcentaje
 // string   $nombreUsuario, $palabra
 // array    $coleccionPalabras, $partidaNueva, $historialPartidas // array indexado
 // array    $primerPartida, $resumenJ // array asociativo
 
 //Inicialización de variables:
+$jugo=false;
 $opcion=0; $min=1; $palabraMax=0; $partidaMax=0; $numeroPalabra=0; $nroPartida=0; $porcentaje=0;
 $nombreUsuario="wordix"; $palabra="wordix";
 $partidaNueva=[]; $primerPartida=[]; $coleccionPalabras=[]; $historialPartidas=[]; $resumenJ=[];
@@ -360,9 +378,16 @@ do {
             $palabraMax=count($coleccionPalabras);
             div(); 
             $nombreUsuario=solicitarJugador();
+            do{
             echo "Ingrese numero de palabra: ";
             $numeroPalabra=solicitarNumeroEntre($min,$palabraMax);
             $numeroPalabra--;
+            $jugo=repitePalabra($historialPartidas,$coleccionPalabras,$numeroPalabra,$nombreUsuario);         
+                if ($jugo==true){
+                    echo "Esa palabra ya fue jugada, ingrese un numero distinto.\n";
+                }
+            echo $jugo."\n";
+            }while($jugo!=null);
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
             $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
             pausa();
@@ -372,9 +397,14 @@ do {
             $palabraMax=count($coleccionPalabras);
             div(); 
             $nombreUsuario=solicitarJugador();
-            $numeroPalabra=(int)rand($min, $palabraMax);
-            echo "Se eligio aleatoreamente la palabra numero: ".$numeroPalabra."\n";
-            $numeroPalabra--;
+            do{
+                echo "Ingrese numero de palabra: ";
+                $numeroPalabra=(int)rand($min, $palabraMax);
+                $numeroPalabra--;
+                $jugo=repitePalabra($historialPartidas,$coleccionPalabras,$numeroPalabra,$nombreUsuario);
+                echo $numeroPalabra;         
+            }while($jugo!=null);
+            echo "Se eligio aleatoreamente la palabra numero: ".($numeroPalabra+1)."\n";
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
             $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
             pausa(); 
