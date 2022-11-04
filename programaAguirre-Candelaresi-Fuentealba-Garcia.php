@@ -67,11 +67,10 @@ function cargarColeccionPalabras()
 /*inciso 2 */
 /**************************************/
 /**Inicializa con 10 partidas ya jugadas
-*@param String $jugador,$palabraWordix
-*@param int $intentos,$puntaje
-*@return array
+* @return array // array indezado
 */
 function cargarPartidas(){
+    // array $coleccionPartidas // array indexado
 	$coleccionPartidas[0]=["palabraWordix"=>"QUESO","nombre"=>"majo","cantIntentos"=>0,"puntaje"=>0];
 	$coleccionPartidas[1]=["palabraWordix"=>"CASAS","nombre"=>"rudolf","cantIntentos"=>3,"puntaje"=>14];
 	$coleccionPartidas[2]=["palabraWordix"=>"QUESO","nombre"=>"pink2000","cantIntentos"=>6,"puntaje"=>10];
@@ -237,12 +236,11 @@ function resumenJugador($matchHistory,$player){
 /*inciso 10 */
 /**************************************/
 /**Esta funcion solicita el nombre del jugador y retorna el mismo nombre pero con los caracteres en minuscula
- * @param null
- * @var string $jugador, $nombre
- * @return string $jugador
+ * @return string
 */
 
 function solicitarJugador(){
+    // string $jugador, $nombre
     /*Se utiliza la repetitiva do-while, para que la funcion genere iteraciones hasta que se ingrese
     *un nombre el cual su primer caracter sea una letra*/
     do{
@@ -314,9 +312,9 @@ function div(){
 }
 /**
 *Carga la partida recien jugada al array (Historial de partidas)
-*@param String $jugador,$palabraWordix
-*@param int $intentos,$puntaje
-*@return array
+*@param array $coleccionPartidas // array indexado
+*@param array $partida // array asosiativo
+*@return array // array asosiativo
 */
 function agregarPartida($coleccionPartidas,$partida)
 {
@@ -341,15 +339,15 @@ function pausa(){
 /* Wordix es un Juego de palabras muy adictivo en el que tendrás que adivinar palabras. Tu tarea del usuario consiste en
 resolver una palabra de cinco letras en seis intentos. */
 //Declaración de variables:
-// int      $opcion, $min, $palabraMax, $numeroPalabra, $partidaMax, $nroPartida
+// int      $opcion, $min, $palabraMax, $numeroPalabra, $partidaMax, $nroPartida, $porcentaje
 // string   $nombreUsuario, $palabra
 // array    $coleccionPalabras, $partidaNueva, $historialPartidas // array indexado
-// array    $resumenJugador, ,$primerPartida // array asociativo
+// array    $primerPartida, $resumenJ // array asociativo
 
 //Inicialización de variables:
-$opcion=0; $min=1; $palabraMax=0; $partidaMax=0; $numeroPalabra=0; $nroPartida=0;
+$opcion=0; $min=1; $palabraMax=0; $partidaMax=0; $numeroPalabra=0; $nroPartida=0; $porcentaje=0;
 $nombreUsuario="wordix"; $palabra="wordix";
-$partidaNueva=[]; $primerPartida=[]; $coleccionPalabras=[]; $historialPartidas=[]; $resumenJugador=[];
+$partidaNueva=[]; $primerPartida=[]; $coleccionPalabras=[]; $historialPartidas=[]; $resumenJ=[];
 //Proceso:
 $coleccionPalabras=cargarColeccionPalabras();
 $historialPartidas=cargarPartidas();
@@ -375,7 +373,7 @@ do {
             div(); 
             $nombreUsuario=solicitarJugador();
             $numeroPalabra=(int)rand($min, $palabraMax);
-            echo "Se eligio aleatoreamente la palabra numero: ".$numeroPalabra;
+            echo "Se eligio aleatoreamente la palabra numero: ".$numeroPalabra."\n";
             $numeroPalabra--;
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
             $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
