@@ -341,18 +341,15 @@ function pausa(){
 /* Wordix es un Juego de palabras muy adictivo en el que tendrás que adivinar palabras. Tu tarea del usuario consiste en
 resolver una palabra de cinco letras en seis intentos. */
 //Declaración de variables:
-// int      $opcion
+// int      $opcion, $min, $palabraMax, $numeroPalabra, $partidaMax, $nroPartida
 // string   $nombreUsuario, $palabra
-// array    $coleccionPalabras,$historialPartidas // array indexado
-// array    $resumenJugador // array
+// array    $coleccionPalabras, $partidaNueva, $historialPartidas // array indexado
+// array    $resumenJugador, ,$primerPartida // array asociativo
 
 //Inicialización de variables:
-$opcion=0;
-$nombreUsuario="Wordix";
-$palabra="Wordix";
-$coleccionPalabras=[];
-$historialPartidas=[];
-$resumenJugador=[];
+$opcion=0; $min=1; $palabraMax=0; $partidaMax=0; $numeroPalabra=0; $nroPartida=0;
+$nombreUsuario="wordix"; $palabra="wordix";
+$partidaNueva=[]; $primerPartida=[]; $coleccionPalabras=[]; $historialPartidas=[]; $resumenJugador=[];
 //Proceso:
 $coleccionPalabras=cargarColeccionPalabras();
 $historialPartidas=cargarPartidas();
@@ -363,7 +360,6 @@ do {
         case 1: 
             // 1) Jugar al Wordix con una palabra elegida
             $palabraMax=count($coleccionPalabras);
-            $min=1; //documentar
             div(); 
             $nombreUsuario=solicitarJugador();
             echo "Ingrese numero de palabra: ";
@@ -378,7 +374,7 @@ do {
             $palabraMax=count($coleccionPalabras);
             div(); 
             $nombreUsuario=solicitarJugador();
-            $numeroPalabra=(int)rand(1, $palabraMax);
+            $numeroPalabra=(int)rand($min, $palabraMax);
             echo "Se eligio aleatoreamente la palabra numero: ".$numeroPalabra;
             $numeroPalabra--;
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
@@ -389,7 +385,7 @@ do {
             // 3) Mostrar una partida
             $partidaMax=count($historialPartidas);
             echo "Indique numero de partida a visualizar: ";
-            $nroPartida=solicitarNumeroEntre(1,$partidaMax)-1;
+            $nroPartida=solicitarNumeroEntre($min,$partidaMax)-1;
             mostrarDatosPartida($historialPartidas,($nroPartida));
             div();
             pausa();
@@ -397,8 +393,8 @@ do {
             //...
         case 4: 
             // 4) Mostrar la primer partida ganadora, solicita un nombre de jugador y devuelve la primer partida ganadora
-            $usuarioPartida=solicitarJugador();//falta declarar
-            $primerPartida=indicePartidaGanada($historialPartidas, $usuarioPartida);//falta declarar
+            $nombreUsuario=solicitarJugador();//falta declarar
+            $primerPartida=indicePartidaGanada($historialPartidas, $nombreUsuario);
             div();
             mostrarDatosPartida($historialPartidas,$primerPartida);
             div();
@@ -408,8 +404,8 @@ do {
         case 5:
             // 5) Mostrar resumen de Jugador, pide nombre del jugador y llama una funcion que consulta al historial de partidas
             // devolviendo un array asosiativo ordenado en el formato solicitado con los datos del jugador.
-            $jugador=solicitarJugador();
-            $resumenJ=resumenJugador($historialPartidas,$jugador);
+            $nombreUsuario=solicitarJugador();
+            $resumenJ=resumenJugador($historialPartidas,$nombreUsuario);
             if ($resumenJ["partidas"]!=0)
                 {
                 $porcentaje=(int)($resumenJ["victorias"]*100/$resumenJ["partidas"]);
@@ -429,7 +425,7 @@ do {
                 div();
             } else {
                 div();
-                echo "El jugador ".$jugador." aun no ha jugado Wordix! No registra ninguna partida.\n";
+                echo "El jugador ".$nombreUsuario." aun no ha jugado Wordix! No registra ninguna partida.\n";
                 div();
                 }
             pausa();
