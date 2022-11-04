@@ -336,7 +336,6 @@ function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugad
             $yaJugo=true;
         }        
     }
-    echo $yaJugo."\n";
     return $yaJugo;
 }
 
@@ -386,7 +385,6 @@ do {
                 if ($jugo==true){
                     echo "Esa palabra ya fue jugada, ingrese un numero distinto.\n";
                 }
-            echo $jugo."\n";
             }while($jugo!=null);
             $partidaNueva=jugarWordix($coleccionPalabras[$numeroPalabra],$nombreUsuario);
             $historialPartidas=agregarPartida($historialPartidas,$partidaNueva);
