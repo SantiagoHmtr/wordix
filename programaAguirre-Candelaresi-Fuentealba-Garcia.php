@@ -402,8 +402,7 @@ do {
         case 5:
             // 5) Mostrar resumen de Jugador, pide nombre del jugador y llama una funcion que consulta al historial de partidas
             // devolviendo un array asosiativo ordenado en el formato solicitado con los datos del jugador.
-            echo "Ingrese nombre de Jugador: ";
-            $jugador=trim(fgets(STDIN)); 
+            $jugador=solicitarJugador();
             $resumenJ=resumenJugador($historialPartidas,$jugador);
             if ($resumenJ["partidas"]!=0)
                 {
@@ -423,7 +422,7 @@ do {
                 echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
                 div();
             } else {
-                echo "El jugador aun no ha jugado Wordix!!! No registra ninguna partida.\n";
+                echo "El jugador ".$jugador." aun no ha jugado Wordix!!! No registra ninguna partida.\n";
                 }
             pausa();
             break;
