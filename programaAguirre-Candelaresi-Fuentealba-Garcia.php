@@ -67,7 +67,7 @@ function cargarColeccionPalabras()
 /*inciso 2 */
 /**************************************/
 /**Inicializa con 10 partidas ya jugadas
-* @return array // array indezado
+* @return array // array indexado
 */
 function cargarPartidas(){
     // array $coleccionPartidas // array indexado
@@ -313,8 +313,8 @@ function div(){
 /**
 *Carga la partida recien jugada al array (Historial de partidas)
 *@param array $coleccionPartidas // array indexado
-*@param array $partida // array asosiativo
-*@return array // array asosiativo
+*@param array $partida // array asociativo
+*@return array // array asociativo
 */
 function agregarPartida($coleccionPartidas,$partida)
 {
