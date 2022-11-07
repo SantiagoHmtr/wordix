@@ -348,6 +348,12 @@ function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugad
 
 //********************************************** */
 /* Esta funcion verifica si al ingresar una palabra nueva en wordix, que no sea una repetida*/
+/*La funcion predefinida in_array se utiliza para verificar si cierto valor no se encuentra en el array
+*Como parametros tiene primero el valor que va a comparar con los del array ,y luego el array comparativo. */
+//@param string $palabraIngresada
+//@param array $coleccionPalabrasWordix
+//@return string $palabraIngresada
+//@var boolean $repetida
 function verificarPalabraExistente ($palabraIngresada, $coleccionPalabrasWordix){
     do{
         if (in_array($palabraIngresada, $coleccionPalabrasWordix)){
@@ -502,6 +508,7 @@ do {
         case 7:
             // 7) Agregar una palabra de 5 letras a Wordix, usando la funcion "leerPalabra5Letras" obtiene una palabra toda
             // en mayuscula y la agrega al array $coleccionPalabras a traves de la funcion "agregarPalabra"
+            //Se llama a la funcino verificarPalabraExistente para que al agregar una nueva palabra wordix, esta no este repetida.
             div();
 
             $palabra=leerPalabra5Letras();
