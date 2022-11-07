@@ -344,6 +344,28 @@ function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugad
     }
     return $yaJugo;
 }
+
+
+//********************************************** */
+/* Esta funcion verifica si al ingresar una palabra nueva en wordix, que no sea una repetida*/
+function verificarPalabraExistente ($palabraIngresada, $coleccionPalabrasWordix){
+    do{
+        if (in_array($palabraIngresada, $coleccionPalabrasWordix)){
+            echo "La palabra ingresada ya se encuentra dentro del juego:\n ";
+            $palabraIngresada = leerPalabra5Letras();
+            $repetida = true;
+        }elseif (!in_array($palabraIngresada, $coleccionPalabrasWordix)){
+            $repetida = false;
+        }
+        
+    }while($repetida == true );
+
+    return $palabraIngresada;
+}
+
+
+
+//*********************************************** */
 /** Funcion que devuelve mensaje de que usuario no esta en el historial de partidas
  * @param string $usuario
  */
@@ -377,7 +399,7 @@ resolver una palabra de cinco letras en seis intentos. */
 $jugo=false;
 $opcion=0; $min=1; $palabraMax=0; $partidaMax=0; $numeroPalabra=0; $nroPartida=0; $porcentaje=0;
 $nombreUsuario="wordix"; $palabra="wordix";
-$partidaNueva=[]; $primerPartida=[]; $coleccionPalabras=[]; $historialPartidas=[]; $resumenJ=[];
+$partidaNueva=[]; $primerPartida=[]; $coleccionPalabras=[]; $historialPartidas=[]; $resumenJ=[]; $palabraNoRepetida ="";
 //Proceso:
 $coleccionPalabras=cargarColeccionPalabras();
 $historialPartidas=cargarPartidas();
@@ -481,10 +503,15 @@ do {
             // 7) Agregar una palabra de 5 letras a Wordix, usando la funcion "leerPalabra5Letras" obtiene una palabra toda
             // en mayuscula y la agrega al array $coleccionPalabras a traves de la funcion "agregarPalabra"
             div();
+
             $palabra=leerPalabra5Letras();
-            $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabra);
-            div();
+            $palabraVerificada = verificarPalabraExistente($palabra, $coleccionPalabras);
+            $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabraVerificada);
             echo "Palabra agregada con exito!!!\n";
+            
+            
+            
+            
             pausa();
             break;
         case 8: 
