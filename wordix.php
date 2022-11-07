@@ -34,7 +34,7 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 function solicitarNumeroEntre($min, $max)
 {
     $numero = trim(fgets(STDIN));
-        while (!ctype_digit($numero) || $numero < $min || $numero > $max) {
+        while (!ctype_digit($numero) || $numero < $min || $numero > $max){
             echo "Debe ingresar un número entero entre " . $min . " y " . $max . ": ";
             $numero = trim(fgets(STDIN));
         }

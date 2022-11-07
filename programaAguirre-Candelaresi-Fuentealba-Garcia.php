@@ -177,6 +177,8 @@ function indicePartidaGanada($partidas, $usuario){
         if ($partidas[$i]["nombre"] == $usuario && ($partidas[$i]["puntaje"] > 0)) {
             $indicePrimeraVictoria = $i;
             $i = count ($partidas);
+        }else{
+            $indicePrimeraVictoria = -1;
         }
     }
     return $indicePrimeraVictoria;
@@ -325,10 +327,14 @@ function agregarPartida($coleccionPartidas,$partida)
     return $coleccionPartidas;
 }
 /** Funcion para comprobar si el jugador ya jugo con una palabra
- * 
+ * @param array     $historialDePartidas, $coleccion DePalabras //array indexado
+ * @param string    $palabra, $jugador
+ * @return boolean
  */
 function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugador)
 {
+    // boolean  $yaJugo
+    // int      $maxP
     $maxP=count($historialDePartidas);
     $yaJugo=false;
     for($p=0;$p<$maxP;$p++){
@@ -338,7 +344,14 @@ function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugad
     }
     return $yaJugo;
 }
-
+/** Funcion que devuelve mensaje de que usuario no esta en el historial de partidas
+ * @param string $usuario
+ */
+function noJugoAun($usuario){
+    div();
+    echo "El jugador ".$usuario." aun no ha jugado Wordix! No registra ninguna partida.\n";
+    div();  
+}
 /**
 * Funcion sin parametros que solo detiene la ejecucion del programa para que el usuario vea los datos presentados
 * en pantalla.
@@ -418,11 +431,15 @@ do {
             //...
         case 4: 
             // 4) Mostrar la primer partida ganadora, solicita un nombre de jugador y devuelve la primer partida ganadora
-            $nombreUsuario=solicitarJugador();//falta declarar
+            $nombreUsuario=solicitarJugador();
             $primerPartida=indicePartidaGanada($historialPartidas, $nombreUsuario);
-            div();
-            mostrarDatosPartida($historialPartidas,$primerPartida);
-            div();
+            if ($primerPartida!=-1){
+                div();
+                mostrarDatosPartida($historialPartidas,$primerPartida);
+                div();
+            }else{
+                noJugoAun($nombreUsuario);
+            }
             pausa();
             break;
             //...
@@ -449,9 +466,7 @@ do {
                 echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
                 div();
             } else {
-                div();
-                echo "El jugador ".$nombreUsuario." aun no ha jugado Wordix! No registra ninguna partida.\n";
-                div();
+                noJugoAun($nombreUsuario);
                 }
             pausa();
             break;
@@ -483,6 +498,7 @@ do {
         default:
             //Caso general para cuando no se ingresa ninguna de la opciones del menu.
             div();
+            
             echo "ERROR!!! Ingrese una opcion correcta: \n";
             break;
     }
