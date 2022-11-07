@@ -509,8 +509,7 @@ do {
             $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabraVerificada);
             echo "Palabra agregada con exito!!!\n";
             
-            
-            
+            div();
             
             pausa();
             break;
