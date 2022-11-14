@@ -12,26 +12,20 @@ Legajo: FAI-4424
 Carrera: TUDW
 mail: dariofuentealba1@gmail.com
 Usuario Github: DarioFuentealba 
-*/
 
-/*
 Apellido: Garcia
 Nombre: Santiago
 Legajo: FAI-1777
 Carrera: TUDW
 Email: santiagoramirogarcia97@gmail.com
 Usuario Github: SantiagoHmtr
-*/
 
-/*
 Apellido: Aguirre
 Nombre: Alan Michel
 Legajo: FAI-2635
 Email: alanaguirre_09@hotmail.com
 Usuario Github: AlanMichelAguirre
-*/
 
-/*
 Apellido: Candelaresi
 Nombre: Pedro
 Legajo: 112758
@@ -58,7 +52,7 @@ function cargarColeccionPalabras()
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
         "HIELO", "MANGO", "PIZZA", "PADRE", "HIJAS"
     ];
-    //LISTO
+    
 
     return ($coleccionPalabras);
 }
