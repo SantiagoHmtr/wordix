@@ -145,9 +145,11 @@ function esPalabra($cadena)
 }
 
 /**
- * @param
- * @return
- *  ****COMPLETAR*****
+ * @param  void
+ * @return string $palabra
+ * A esta funcion se le ingresa una palabra, si esta palabra tiene solo caracteres alfabeticos y contiene 5 caracteres,
+ * se retorna la misma, caso contrario la estructura repetitiva continua hasta que se ingrese una palabra correcta
+ * Se utiliza la funcion predefinida strtoupper, la cual convierte los caracteres alfabeticos en mayusculas.
  */
 function leerPalabra5Letras()
 {
