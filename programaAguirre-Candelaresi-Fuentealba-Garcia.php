@@ -129,7 +129,7 @@ function seleccionarOpcion()
 * @return STRING Retorna un mensaje
 */
 function mostrarDatosPartida($coleccionPartidas,$nroPartida){
-    //$nroPartida = Solicitar entre (0, 9)
+    //$nroPartida = Solicitar entre (1, (cantidad de partidas))
     //Recorrido parcial
     //$coleccionPartidas = cargarPartidas();
 	
@@ -188,7 +188,7 @@ function indicePartidaGanada($partidas, $usuario){
 /*inciso 9 */
 /**************************************/
 /**
- * Funcion que retorna el historial de un jugador en un array asosiativo a partir del historial de partidas almacenado
+ * Funcion que retorna el historial de un jugador en un array asociativo a partir del historial de partidas almacenado
  * @param array $matchHistory //array indexado
  * @param string $player
  * @return array //array asosiativo
@@ -261,9 +261,14 @@ function solicitarJugador(){
 /*inciso 11 */
 
 /* La funcion ordenAlfabetico se encarga de ordenar alfabeticamente los nombres y luego las palabras wordix
-*usando la funcion uasort, la cual requiere un array y una comparacion para definir como se desea el orden de
+*usando la funcion uasort (ambas en orden ascendente), la cual requiere un array y una comparacion para definir como se desea el orden de
 *las palabras, en este caso la funcion comparacionAlfabetica es la que nos permite ordenar primero por la clave
 *"nombre" y luego por la clave "palabraWordix"
+*/
+
+/*@param array $partidas0, $partidas1
+*@var int $asc
+*@return int $asc
 */
 function comparacionAlfabetica($partidas0, $partidas1){
     $asc = 0;
