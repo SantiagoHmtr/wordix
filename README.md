@@ -21,6 +21,11 @@ Universidad Nacional Del Comahue
 
 Corregir:
 - Mensaje de "No ha ganado " en vez de "No ha jugado" en algunos casos. No es lo mismo no haber jugado nunca que haber jugado y nunca haber ganado.
+
 - Busquedas exhaustivas "forzadas" a ser parciales. en Control de que no haya jugado con la misma palabra. y en Primer partida ganada,
-- Switch en el resumen del jugador.
-- 
+
+- Switch en el resumen del jugador. ---> A medio hacer, no lo entiendo muy bien
+
+- div() ---> Lo llamé divisor() ---> HECHO
+
+- Mejora de los comentarios ---> HECHO
