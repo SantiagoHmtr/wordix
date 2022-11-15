@@ -122,9 +122,11 @@ function seleccionarOpcion()
 * @param INT $numeroPartida
 */
 function mostrarDatosPartida($coleccionPartidas,$nroPartida){
-    //$nroPartida = Solicitar entre (1, (cantidad de partidas))
-    //Recorrido parcial
-    //$coleccionPartidas = cargarPartidas();
+    /*
+    $nroPartida = Solicitar entre (1, (cantidad de partidas))
+    Recorrido parcial
+    $coleccionPartidas = cargarPartidas();
+    */
 	
     divisor();
     //Muestra en pantalla el número de partida, la palabra con la que se jugó, el nombre del jugador y su puntaje.
@@ -143,8 +145,7 @@ function mostrarDatosPartida($coleccionPartidas,$nroPartida){
 /**************************************/
 /*inciso 7 */
 /**************************************/
-/**
-* Agrega palabras nuevas a un array existente
+/** Agrega palabras nuevas a un array existente
 * @param STRING $palabra
 * @param ARRAY $coleccionPalabras
 * @return ARRAY Retorna el array coleccionPalabras con la nueva palabra agregada (array indexado)
@@ -159,8 +160,7 @@ function agregarPalabra($coleccionPalabras,$palabra){
 /**************************************/
 /*inciso 8 */
 /**************************************/
-/**
-* Dadas una colección de partidas y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
+/** Dadas una colección de partidas y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
 * @param INT $cantidadPartidas
 * @param STRING $usuario
 * @return INT el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
@@ -183,8 +183,7 @@ function indicePartidaGanada($partidas, $usuario){
 /**************************************/
 /*inciso 9 */
 /**************************************/
-/**
- * Función que retorna el historial de un jugador en un array asociativo a partir del historial de partidas almacenado
+/** Función que retorna el historial de un jugador en un array asociativo a partir del historial de partidas almacenado
  * @param ARRAY $matchHistory (array indexado)
  * @param STRING $player
  * @return ARRAY (array asosiativo)
@@ -205,8 +204,7 @@ function resumenJugador($matchHistory,$player){
               "intento 5"=>0,
               "intento 6"=>0];
     $totalPartidas=count($matchHistory);
-    for ($i=0;$i<$totalPartidas;$i++)
-    {
+    for ($i=0;$i<$totalPartidas;$i++){
         
         if ($matchHistory[$i]["nombre"]==$player){
         $resumen["partidas"]++;
@@ -260,7 +258,7 @@ function resumenJugador($matchHistory,$player){
 */
 
 function solicitarJugador(){
-    // string $jugador, $nombre
+    // STRING $jugador, $nombre
     //Se utiliza la repetitiva do-while, para que la función genere iteraciones hasta que se ingrese un nombre el cual su primer caracter sea una letra
     do{
         echo "Ingrese el nombre del jugador: ";
@@ -276,7 +274,7 @@ function solicitarJugador(){
 
 /**************************************/
 /*inciso 11 */
-
+/**************************************/
 /** La función ordenAlfabetico se encarga de ordenar alfabeticamente los nombres y luego las palabras wordix usando la función uasort (ambas en orden ascendente), la cual requiere un array y una comparacion para definir como se desea el orden de las palabras, en este caso la función comparacionAlfabetica es la que nos permite ordenar primero por la clave "nombre" y luego por la clave "palabraWordix"
 * @param ARRAY $partidas0
 * @param ARRAY $partidas1
@@ -302,7 +300,6 @@ if ($partidas0["nombre"] == $partidas1["nombre"]){
 }elseif($partidas0["nombre"] < $partidas1["nombre"]){
         if($partidas0["palabraWordix"] < $partidas1["palabraWordix"]){
             $asc =-1;
-
     }
 }else{
     $asc = 1;
@@ -355,8 +352,7 @@ function agregarPartida($coleccionPartidas,$partida)
  * @param STRING $jugador
  * @return BOOLEAN
  */
-function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugador)
-{
+function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugador){
     // BOOLEAN $yaJugo
     // INT $maxP
 
@@ -420,8 +416,7 @@ function pausa(){
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
-/* Wordix es un Juego de palabras muy adictivo en el que tendrás que adivinar palabras. Tu tarea del usuario consiste en
-resolver una palabra de cinco letras en seis intentos.*/
+/* Wordix es un Juego de palabras muy adictivo en el que tendrás que adivinar palabras. Tu tarea del usuario consiste en resolver una palabra de cinco letras en seis intentos.*/
 
 //Declaración de variables:
 // BOOLEAN  $jugo
