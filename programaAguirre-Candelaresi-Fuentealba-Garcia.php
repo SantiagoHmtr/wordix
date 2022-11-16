@@ -370,7 +370,7 @@ function verificarPalabraExistente ($palabraIngresada, $coleccionPalabrasWordix)
 /** Funcion que devuelve mensaje de que usuario no esta en el historial de partidas
  * @param string $usuario
  */
-function noJugoAun($historialPartidas,$usuario){
+function noGanoAun($historialPartidas,$usuario){
     $partidas=count($historialPartidas);
     $cantidadDePartidas=0;
     for ($p=0;$p<$partidas;$p++){
@@ -477,7 +477,7 @@ do {
                 separador();
             }  
             else{
-                noJugoAun($historialPartidas,$nombreUsuario);
+                noGanoAun($historialPartidas,$nombreUsuario);
             }
             pausa();
             break;
@@ -505,7 +505,7 @@ do {
                 echo "  Intento 6: ".$resumenJ["intento 6"]."\n";
                 separador();
             } else {
-                noJugoAun($historialPartidas,$nombreUsuario);
+                noGanoAun($historialPartidas,$nombreUsuario);
                 }
             pausa();
             break;
