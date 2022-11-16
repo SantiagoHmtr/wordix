@@ -114,7 +114,6 @@ function escribirSegunEstado($texto, $estado)
 
 /** Dado el nombre del usuario, da un mensaje bienvenida personalizado
  * @param STRING $usuario
- * ****LISTO*****
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -129,7 +128,6 @@ function escribirMensajeBienvenida($usuario)
 /** Verifica la longitud de una palabra y que todos sus caractéres sean alfabéticos
  * @param STRING $cadena
  * @return BOOLEAN $esLetra 
- * ****LISTO*****
  */
 function esPalabra($cadena)
 {
@@ -243,9 +241,7 @@ function imprimirIntentosWordix($estructuraIntentosWordix)
 }
 
 /**
- * Dada la palabra wordix a adivinar, la estructura para almacenar la información del intento 
- * y la palabra que intenta adivinar la palabra wordix.
- * devuelve la estructura de intentos Wordix modificada con el intento.
+ * Dada la palabra wordix a adivinar, la estructura para almacenar la información del intento y la palabra que intenta adivinar la palabra wordix. Devuelve la estructura de intentos Wordix modificada con el intento.
  * @param string $palabraWordix
  * @param array $estruturaIntentosWordix
  * @param string $palabraIntento
@@ -307,7 +303,7 @@ function actualizarTeclado($teclado, $estructuraPalabraIntento)
 /**
  * Determina si se ganó una palabra intento posee todas sus letras "Encontradas".
  * @param array $estructuraPalabraIntento
- * @return bool
+ * @return boolean
  */
 function esIntentoGanado($estructuraPalabraIntento)
 {
