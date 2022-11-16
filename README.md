@@ -26,6 +26,6 @@ Corregir:
 
 - Switch en el resumen del jugador. ---> A medio hacer, no lo entiendo muy bien
 
-- div() ---> Lo llamé divisor() ---> HECHO
+- div() ---> Lo llamé separador() ---> HECHO
 
 - Mejora de los comentarios ---> HECHO
