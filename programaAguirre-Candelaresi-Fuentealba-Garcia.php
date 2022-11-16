@@ -166,12 +166,13 @@ function agregarPalabra($coleccionPalabras,$palabra){
 /**************************************/
 /**
 * Dadas una colección de partidas y el nombre de un jugador, retorna el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
-* @param INT $cantidadPartidas
+* @param ARRAY $partidas // array indexado
 * @param STRING $usuario
 * @return INT el índice de la primer partida ganada por dicho jugador. Si no ganó aún, retorna -1
 */
 function indicePartidaGanada($partidas, $usuario){
     //Array vacío al que le asigno valores por medio de una estructura repetitiva, hasta encontrar el valor deseado y mostrarlo en pantalla
+    //int   $i, $indicePrimeraVictoria, $cantidadPartidas
     $i=0;
     $indicePrimeraVictoria=-1;
     $cantidadPartidas=count($partidas);
@@ -369,10 +370,14 @@ function verificarPalabraExistente ($palabraIngresada, $coleccionPalabrasWordix)
 //*********************************************** */
 /** Funcion que devuelve mensaje de que usuario no esta en el historial de partidas
  * @param string $usuario
+ * @param historialPartidas array / array indexado
  */
 function noGanoAun($historialPartidas,$usuario){
-    $partidas=count($historialPartidas);
+    //int   $partidas, $cantidadDePartidas, $p
+    $p=0;
+    $partidas=0;
     $cantidadDePartidas=0;
+    $partidas=count($historialPartidas);
     for ($p=0;$p<$partidas;$p++){
         if ($historialPartidas[$p]["nombre"]==$usuario){
             $cantidadDePartidas++;
