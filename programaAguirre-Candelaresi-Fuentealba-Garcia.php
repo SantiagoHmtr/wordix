@@ -172,17 +172,23 @@ function agregarPalabra($coleccionPalabras,$palabra){
 */
 function indicePartidaGanada($partidas, $usuario){
     //Array vacío al que le asigno valores por medio de una estructura repetitiva, hasta encontrar el valor deseado y mostrarlo en pantalla
-    $indicePrimeraVictoria = [];
-    for ($i = 0; $i < count ($partidas); $i++) {
-        if ($partidas[$i]["nombre"] == $usuario && ($partidas[$i]["puntaje"] > 0)) {
+    $i = 0;
+    $victoriaJugador = false;
+    while($victoriaJugador == false){
+        if ($partidas[$i]["nombre"] == $usuario && ($partidas[$i]["puntaje"] > 0)){
             $indicePrimeraVictoria = $i;
-            $i = count ($partidas);
+            $victoriaJugador = true;
+        }elseif($i == count($partidas)-1){
+            $indicePrimeraVictoria = -1;
+            $victoriaJugador = true; 
         }else{
             $indicePrimeraVictoria = -1;
         }
+        $i++;
     }
     return $indicePrimeraVictoria;
 }
+
 
 /**************************************/
 /*inciso 9 */
