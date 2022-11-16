@@ -333,19 +333,22 @@ function agregarPartida($coleccionPartidas,$partida)
  * @param string    $palabra, $jugador
  * @return boolean
  */
-function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugador)
-{
+
+function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugador){
     // boolean  $yaJugo
     // int      $maxP
-    $maxP=count($historialDePartidas);
     $yaJugo=false;
-    for($p=0;$p<$maxP;$p++){
-        if ($historialDePartidas[$p]["palabraWordix"]==$coleccionDePalabras[$palabra]&&$historialDePartidas[$p]["nombre"]==$jugador){
+    $i = 0;
+    $maxP=count($historialDePartidas);
+    while ($yaJugo == false && $i != count($historialDePartidas)-1){
+        if ($historialDePartidas[$i]["palabraWordix"]==$coleccionDePalabras[$palabra]&&$historialDePartidas[$i]["nombre"]==$jugador){
             $yaJugo=true;
-        }        
+        }
+        $i++;      
     }
     return $yaJugo;
 }
+
 //********************************************** */
 /* Esta funcion verifica si al ingresar una palabra nueva en wordix, que no sea una repetida*/
 /*La funcion predefinida in_array se utiliza para verificar si cierto valor no se encuentra en el array
