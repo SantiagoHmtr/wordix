@@ -188,12 +188,13 @@ function indicePartidaGanada($partidas, $usuario){
 * @param STRING $player
 * @return ARRAY (array asosiativo)
 */
-function resumenJugador($matchHistory,$player){
+function resumenJugador($matchHistory,$player)
+{
     // INT  $totalPartidas, $i
     // ARRAY $resumen (array asosiativo)
 	
-    $totalPartidas=0;
-    $resumen=["nombre"=>$player,
+    $totalPartidas = 0;
+    $resumen = ["nombre"=>$player,
               "partidas"=>0,
               "puntaje"=>0,
               "victorias"=>0,
@@ -203,18 +204,21 @@ function resumenJugador($matchHistory,$player){
               "intento 4"=>0,
               "intento 5"=>0,
               "intento 6"=>0];
-    $totalPartidas=count($matchHistory);
-    for ($i=0;$i<$totalPartidas;$i++){
+    $totalPartidas = count($matchHistory);
+    for ($i=0;$i<$totalPartidas;$i++)
+    {
 	    
-        if ($matchHistory[$i]["nombre"]==$player){
-        $resumen["partidas"]++;
-        $resumen["puntaje"]=$resumen["puntaje"]+$matchHistory[$i]["puntaje"];
-            if ($matchHistory[$i]["puntaje"]>0){
+        if ($matchHistory[$i]["nombre"] == $player)
+	{
+            $resumen["partidas"]++;
+            $resumen["puntaje"] = $resumen["puntaje"] + $matchHistory[$i]["puntaje"];
+            if ($matchHistory[$i]["puntaje"] > 0){
                 $resumen["victorias"]++;
             }
 		
                //la función switch reemplaza al condicional if-elseif, no compara, si no que tiene una opcion para cada caso, en caso de no tener COINCIDENCIA para el valor ingresado, el apartado "default" determina que hacer.
-            switch ($opcion) {  
+            switch ($i)
+	    {  
                 case 1: 
                     //Cantidad de intentos = 1
                     $matchHistory[$i]["cantIntentos"]==1;
@@ -299,7 +303,7 @@ function comparacionAlfabetica($partidas0, $partidas1){
         }
     }elseif($partidas0["nombre"] < $partidas1["nombre"]){
         if($partidas0["palabraWordix"] < $partidas1["palabraWordix"]){
-            $asc =-1;
+            $asc = -1;
         }
     }else{
         $asc = 1;
