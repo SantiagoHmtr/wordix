@@ -169,14 +169,14 @@ function indicePartidaGanada($partidas, $usuario){
     
     //Array vacío al que le asigno valores por medio de una estructura repetitiva, hasta encontrar el valor deseado y mostrarlo en pantalla
     $indicePrimeraVictoria = [];
-    for ($i = 0; $i < count ($partidas); $i++) {
+    $i=0;
+    $indicePrimeraVictoria = -1;
+    do{
         if ($partidas[$i]["nombre"] == $usuario && ($partidas[$i]["puntaje"] > 0)) {
             $indicePrimeraVictoria = $i;
-            $i = count ($partidas);
-        }else{
-            $indicePrimeraVictoria = -1;
         }
-    }
+        $i++;
+    }while($i<count($partidas)-1 || $indicePrimeraVictoria == $i);
     return $indicePrimeraVictoria;
 }
 
