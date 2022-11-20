@@ -220,18 +220,20 @@ function resumenJugador($matchHistory,$player){
             if ($matchHistory[$i]["puntaje"]>0){
                 $resumen["victorias"]++;
             }
-            if ($matchHistory[$i]["cantIntentos"]==1){
-                $resumen["intento 1"]++;
-            } elseif ($matchHistory[$i]["cantIntentos"]==2){
-                $resumen["intento 2"]++;
-            } elseif ($matchHistory[$i]["cantIntentos"]==3){
-                $resumen["intento 3"]++;
-            } elseif ($matchHistory[$i]["cantIntentos"]==4){
-                $resumen["intento 4"]++;
-            } elseif ($matchHistory[$i]["cantIntentos"]==5){
-                $resumen["intento 5"]++;
-            } elseif ($matchHistory[$i]["cantIntentos"]==6){
-                $resumen["intento 6"]++;
+            $intentos=$matchHistory[$i]["cantIntentos"];
+            Switch($intentos){
+            case 1:$resumen["intento 1"]++;
+            break;
+            case 2:$resumen["intento 2"]++;
+            break;
+            case 3:$resumen["intento 3"]++;
+            break;
+            case 4:$resumen["intento 4"]++;
+            break;
+            case 5:$resumen["intento 5"]++;
+            break;
+            case 6:$resumen["intento 6"]++;
+            break;
             }
         }
     }
