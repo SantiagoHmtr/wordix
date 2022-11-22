@@ -285,10 +285,10 @@ if ($partidas0["nombre"] == $partidas1["nombre"]) {
       }
 }   
 elseif($partidas0["nombre"] < $partidas1["nombre"]){
-        if($partidas0["palabraWordix"] < $partidas1["palabraWordix"]){
+        
             $asc =-1;
 
-    }
+    
      
 
 }
