@@ -342,7 +342,7 @@ function repitePalabra($historialDePartidas,$coleccionDePalabras,$palabra,$jugad
     $yaJugo=false;
     $i = 0;
     $maxP=count($historialDePartidas);
-    while ($yaJugo == false && $i != count($historialDePartidas)-1){
+    while ($yaJugo == false && $i < $maxP){
         if ($historialDePartidas[$i]["palabraWordix"]==$coleccionDePalabras[$palabra]&&$historialDePartidas[$i]["nombre"]==$jugador){
             $yaJugo=true;
         }
